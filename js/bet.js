@@ -79,8 +79,8 @@ function plotBETChart(title = 'N₂ Adsorption/Desorption Isotherm') {
     const datasets = [{
         label: 'Adsorption',
         data: betData.adsorption,
-        borderColor: '#06b6d4',
-        backgroundColor: 'rgba(6, 182, 212, 0.08)',
+        borderColor: '#ce9178',
+        backgroundColor: 'rgba(206, 145, 120, 0.05)',
         borderWidth: 2,
         pointRadius: 3,
         pointHoverRadius: 6,
@@ -92,8 +92,8 @@ function plotBETChart(title = 'N₂ Adsorption/Desorption Isotherm') {
         datasets.push({
             label: 'Desorption',
             data: betData.desorption,
-            borderColor: '#f97316',
-            backgroundColor: 'rgba(249, 115, 22, 0.08)',
+            borderColor: '#dcdcaa',
+            backgroundColor: 'rgba(220, 220, 170, 0.05)',
             borderWidth: 2,
             pointRadius: 3,
             pointHoverRadius: 6,
@@ -330,7 +330,7 @@ function plotBETTPlot() {
             datasets: [{
                 label: 'BET Data Points',
                 data: x.map((xi, i) => ({ x: xi, y: y[i] })),
-                borderColor: '#06b6d4',
+                borderColor: '#ce9178',
                 backgroundColor: 'rgba(6, 182, 212, 0.5)',
                 pointRadius: 5,
                 pointHoverRadius: 8
