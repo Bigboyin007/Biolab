@@ -3,148 +3,211 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-i18n-title="bet_analysis">BET Analysis - BioChar Lab</title>
+    <title>BET Analysis - BioChar Lab</title>
     <link rel="stylesheet" href="../css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-    <div class="lang-toggle">
-        <button data-lang="en" class="active" onclick="setLanguage('en')">EN</button>
-        <button data-lang="zh" onclick="setLanguage('zh')">中文</button>
-    </div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
 
     <nav class="navbar">
-        <a href="../index.html" class="nav-brand"><i class="fas fa-leaf"></i><span>BioChar Lab</span></a>
+        <a href="../index.html" class="nav-brand">
+            <i class="fas fa-leaf"></i>
+            <span>BioChar Lab</span>
+        </a>
         <ul class="nav-links">
-            <li><a href="../index.html" data-i18n="home">Home</a></li>
+            <li><a href="../index.html">Home</a></li>
             <li><a href="xrd.html">XRD</a></li>
             <li><a href="ftir.html">FTIR</a></li>
             <li><a href="bet.html" class="active">BET</a></li>
-            <li><a href="../index.html#projects" data-i18n="projects">Projects</a></li>
+            <li><a href="../index.html#projects">Projects</a></li>
         </ul>
         <div class="hamburger"><span></span><span></span><span></span></div>
     </nav>
 
     <section class="analysis-section">
         <div class="section-header">
-            <span class="section-tag"><i class="fas fa-layer-group"></i> <span data-i18n="bet_analysis">BET Analysis</span></span>
-            <h2 data-i18n="bet_analysis">Surface Area & Porosity Analysis</h2>
-            <p data-i18n="bet_desc_long">Upload N₂ adsorption/desorption isotherm data for comprehensive surface area and pore characterization.</p>
+            <span class="section-tag"><i class="fas fa-layer-group"></i> BET Analysis</span>
+            <h2>Surface Area & Porosity Analysis</h2>
+            <p>Upload N₂ adsorption/desorption isotherm data for comprehensive surface area and pore characterization.</p>
         </div>
 
-        <div style="display: grid; grid-template-columns: 280px 1fr; gap: 16px;">
+        <div style="display: grid; grid-template-columns: 300px 1fr; gap: 1.5rem;">
             <div>
                 <div class="upload-area" id="betUploadArea">
                     <i class="fas fa-cloud-upload-alt"></i>
-                    <p data-i18n="drag_drop">Drag & drop files</p>
+                    <p>Drag & drop BET files</p>
                     <span class="upload-formats">.txt, .csv, .xls, .xlsx</span>
                     <input type="file" id="betFileInput" accept=".txt,.csv,.xls,.xlsx" multiple>
-                    <button class="btn btn-outline" style="margin-top: 8px;" onclick="document.getElementById('betFileInput').click()">
-                        <i class="fas fa-folder-open"></i> <span data-i18n="browse">Browse</span>
+                    <button class="btn btn-outline" style="margin-top: 0.5rem;" onclick="document.getElementById('betFileInput').click()">
+                        <i class="fas fa-folder-open"></i> Browse
                     </button>
                 </div>
+
                 <div class="sample-data">
-                    <p><i class="fas fa-vial"></i> <span data-i18n="sample_data">Sample Data:</span></p>
-                    <button class="btn btn-small" onclick="loadSampleBET('biochar')" data-i18n="tea_biochar">Biochar N₂ Isotherm</button>
-                    <button class="btn btn-small" onclick="loadSampleBET('activated')" data-i18n="koh_activated">Activated Carbon</button>
-                    <button class="btn btn-small" onclick="loadSampleBET('mesoporous')" data-i18n="meso_silica">Mesoporous Silica</button>
-                    <button class="btn btn-small" onclick="loadSampleBET('macroporous')" data-i18n="macro_carbon">Macroporous Carbon</button>
+                    <p><i class="fas fa-vial"></i> Sample Data:</p>
+                    <button class="btn btn-small" onclick="loadSampleBET('biochar')">Biochar N₂ Isotherm</button>
+                    <button class="btn btn-small" onclick="loadSampleBET('activated')">Activated Carbon</button>
+                    <button class="btn btn-small" onclick="loadSampleBET('mesoporous')">Mesoporous Silica</button>
+                    <button class="btn btn-small" onclick="loadSampleBET('macroporous')">Macroporous Carbon</button>
                 </div>
             </div>
 
             <div class="chart-panel">
                 <div class="chart-toolbar">
-                    <div class="chart-title"><i class="fas fa-chart-area"></i> <span id="betChartTitle" data-i18n="bet_isotherm">N₂ Adsorption/Desorption Isotherm</span></div>
+                    <div class="chart-title">
+                        <i class="fas fa-chart-area"></i>
+                        <span id="betChartTitle">N₂ Adsorption/Desorption Isotherm</span>
+                    </div>
                     <div class="chart-controls">
-                        <button class="tool-btn" onclick="toggleBETPlot()" title="Switch"><i class="fas fa-random"></i></button>
+                        <button class="tool-btn" onclick="toggleBETPlot()" title="Switch Plot"><i class="fas fa-random"></i></button>
                         <button class="tool-btn" onclick="resetBETChart()" title="Reset"><i class="fas fa-undo"></i></button>
                         <div class="download-dropdown">
                             <button class="tool-btn" onclick="toggleDownloadMenu('betDownloadMenu')" title="Export"><i class="fas fa-download"></i></button>
                             <div class="download-menu" id="betDownloadMenu">
-                                <button onclick="exportBETChart(300)"><i class="fas fa-image"></i> <span data-i18n="png_300">PNG (300 DPI)</span></button>
-                                <button onclick="exportBETChart(600)"><i class="fas fa-image"></i> <span data-i18n="png_600">PNG (600 DPI)</span></button>
-                                <button onclick="exportBETChart(1000)"><i class="fas fa-image"></i> <span data-i18n="png_1000">PNG (1000 DPI)</span></button>
-                                <button onclick="exportBETData('csv')"><i class="fas fa-file-csv"></i> <span data-i18n="data_csv">Data (CSV)</span></button>
-                                <button onclick="exportBETReport()"><i class="fas fa-file-pdf"></i> <span data-i18n="full_report">Full Report</span></button>
+                                <button onclick="exportBETChart(300)"><i class="fas fa-image"></i> PNG (300 DPI)</button>
+                                <button onclick="exportBETChart(600)"><i class="fas fa-image"></i> PNG (600 DPI)</button>
+                                <button onclick="exportBETChart(1000)"><i class="fas fa-image"></i> PNG (1000 DPI)</button>
+                                <button onclick="exportBETData('csv')"><i class="fas fa-file-csv"></i> Data (CSV)</button>
+                                <button onclick="exportBETReport()"><i class="fas fa-file-pdf"></i> Full Report</button>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="chart-container"><canvas id="betChart"></canvas></div>
-                <div class="chart-info" id="betChartInfo"><span><i class="fas fa-info-circle"></i> <span data-i18n="upload_data">Upload data or select a sample</span></span></div>
+                <div class="chart-container">
+                    <canvas id="betChart"></canvas>
+                </div>
+                <div class="chart-info" id="betChartInfo">
+                    <span><i class="fas fa-info-circle"></i> Upload data or select a sample</span>
+                </div>
             </div>
         </div>
 
+        <!-- Metadata -->
         <div class="metadata-panel" id="betMetadataPanel" style="display: none;">
-            <h3><i class="fas fa-database"></i> <span data-i18n="metadata">Isotherm Metadata</span></h3>
+            <h3><i class="fas fa-database"></i> Isotherm Metadata</h3>
             <div class="metadata-grid" id="betMetadataGrid"></div>
         </div>
 
         <div class="analysis-tools">
             <div class="tool-card">
-                <h3><i class="fas fa-calculator"></i> <span data-i18n="bet_calculator">BET Calculator</span></h3>
+                <h3><i class="fas fa-calculator"></i> BET Calculator</h3>
                 <div class="bet-params">
-                    <label data-i18n="cross_section">Cross-sectional area (Å²)</label>
+                    <label>Cross-sectional area σ (Å²)</label>
                     <input type="number" id="crossSection" value="16.2" step="0.1">
-                    <label data-i18n="mol_weight">Molecular weight (g/mol)</label>
+                    <label>Molecular weight (g/mol)</label>
                     <input type="number" id="molWeight" value="28.0134" step="0.0001">
-                    <label data-i18n="stp">STP volume (cm³/mol)</label>
+                    <label>STP volume (cm³/mol)</label>
                     <input type="number" id="stpCondition" value="22414" step="1">
-                    <label data-i18n="bet_range">BET Range (P/P₀)</label>
-                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+                    <label>BET Range (P/P₀)</label>
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;">
                         <input type="number" id="betMinP" value="0.05" step="0.01" placeholder="Min">
                         <input type="number" id="betMaxP" value="0.35" step="0.01" placeholder="Max">
                     </div>
                 </div>
-                <button class="btn btn-primary btn-full" onclick="calculateBET()"><i class="fas fa-calculator"></i> <span data-i18n="bet_calculator">Calculate BET Surface Area</span></button>
+                <button class="btn btn-primary btn-full" onclick="calculateBET()">
+                    <i class="fas fa-calculator"></i> Calculate BET Surface Area
+                </button>
             </div>
 
             <div class="tool-card">
-                <h3><i class="fas fa-chart-pie"></i> <span data-i18n="results_summary">Results Summary</span></h3>
+                <h3><i class="fas fa-chart-pie"></i> Results Summary</h3>
                 <div class="result-grid">
-                    <div class="result-item"><span class="result-label" data-i18n="surface_area">BET Surface Area</span><span class="result-value" id="betSurfaceArea">--</span><span class="result-unit">m²/g</span></div>
-                    <div class="result-item"><span class="result-label" data-i18n="pore_volume">Total Pore Volume</span><span class="result-value" id="betPoreVolume">--</span><span class="result-unit">cm³/g</span></div>
-                    <div class="result-item"><span class="result-label" data-i18n="micro_volume">Micropore Volume</span><span class="result-value" id="betMicroVolume">--</span><span class="result-unit">cm³/g</span></div>
-                    <div class="result-item"><span class="result-label" data-i18n="meso_volume">Mesopore Volume</span><span class="result-value" id="betMesoVolume">--</span><span class="result-unit">cm³/g</span></div>
-                    <div class="result-item"><span class="result-label" data-i18n="avg_pore">Average Pore Size</span><span class="result-value" id="betPoreSize">--</span><span class="result-unit">nm</span></div>
-                    <div class="result-item"><span class="result-label" data-i18n="correlation">Correlation R²</span><span class="result-value" id="betR2">--</span></div>
-                    <div class="result-item"><span class="result-label" data-i18n="monolayer">Monolayer Volume</span><span class="result-value" id="betVm">--</span><span class="result-unit">cm³/g</span></div>
-                    <div class="result-item"><span class="result-label" data-i18n="bet_c">BET Constant C</span><span class="result-value" id="betC">--</span></div>
+                    <div class="result-item">
+                        <span class="result-label">BET Surface Area</span>
+                        <span class="result-value" id="betSurfaceArea">--</span>
+                        <span class="result-unit">m²/g</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Total Pore Volume</span>
+                        <span class="result-value" id="betPoreVolume">--</span>
+                        <span class="result-unit">cm³/g</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Micropore Volume</span>
+                        <span class="result-value" id="betMicroVolume">--</span>
+                        <span class="result-unit">cm³/g</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Mesopore Volume</span>
+                        <span class="result-value" id="betMesoVolume">--</span>
+                        <span class="result-unit">cm³/g</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Average Pore Size</span>
+                        <span class="result-value" id="betPoreSize">--</span>
+                        <span class="result-unit">nm</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Correlation R²</span>
+                        <span class="result-value" id="betR2">--</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Monolayer Volume</span>
+                        <span class="result-value" id="betVm">--</span>
+                        <span class="result-unit">cm³/g</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">BET Constant C</span>
+                        <span class="result-value" id="betC">--</span>
+                    </div>
                 </div>
             </div>
 
             <div class="tool-card">
-                <h3><i class="fas fa-project-diagram"></i> <span data-i18n="isotherm_class">Isotherm Classification</span></h3>
+                <h3><i class="fas fa-project-diagram"></i> Isotherm Classification</h3>
                 <div class="isotherm-types">
-                    <div class="iso-type" id="isoType1"><span class="iso-name">Type I</span><span class="iso-desc" data-i18n="microporous">Microporous</span></div>
-                    <div class="iso-type" id="isoType2"><span class="iso-name">Type II</span><span class="iso-desc" data-i18n="non_porous">Non-porous</span></div>
-                    <div class="iso-type" id="isoType3"><span class="iso-name">Type III</span><span class="iso-desc" data-i18n="weak">Weak interaction</span></div>
-                    <div class="iso-type" id="isoType4"><span class="iso-name">Type IV</span><span class="iso-desc" data-i18n="mesoporous">Mesoporous</span></div>
-                    <div class="iso-type" id="isoType5"><span class="iso-name">Type V</span><span class="iso-desc" data-i18n="capillary">Weak + capillary</span></div>
-                    <div class="iso-type" id="isoType6"><span class="iso-name">Type VI</span><span class="iso-desc" data-i18n="layered">Layered</span></div>
+                    <div class="iso-type" id="isoType1">
+                        <span class="iso-name">Type I</span>
+                        <span class="iso-desc">Microporous</span>
+                    </div>
+                    <div class="iso-type" id="isoType2">
+                        <span class="iso-name">Type II</span>
+                        <span class="iso-desc">Non-porous</span>
+                    </div>
+                    <div class="iso-type" id="isoType3">
+                        <span class="iso-name">Type III</span>
+                        <span class="iso-desc">Weak interaction</span>
+                    </div>
+                    <div class="iso-type" id="isoType4">
+                        <span class="iso-name">Type IV</span>
+                        <span class="iso-desc">Mesoporous</span>
+                    </div>
+                    <div class="iso-type" id="isoType5">
+                        <span class="iso-name">Type V</span>
+                        <span class="iso-desc">Weak + capillary</span>
+                    </div>
+                    <div class="iso-type" id="isoType6">
+                        <span class="iso-name">Type VI</span>
+                        <span class="iso-desc">Layered</span>
+                    </div>
                 </div>
-                <div class="iso-classification" id="isoClassification" data-i18n="upload_data">Upload data to classify isotherm type</div>
+                <div class="iso-classification" id="isoClassification">
+                    Upload data to classify isotherm type
+                </div>
             </div>
 
             <div class="tool-card wide">
-                <h3><i class="fas fa-table"></i> <span data-i18n="detailed_data">Detailed Isotherm Data</span></h3>
+                <h3><i class="fas fa-table"></i> Detailed Isotherm Data</h3>
                 <div class="fg-table-container">
                     <table class="fg-table" id="betDataTable">
                         <thead>
                             <tr>
-                                <th data-i18n="point_num">Point #</th>
-                                <th data-i18n="p_p0">P/P₀</th>
-                                <th data-i18n="adsorption">Adsorption (cm³/g)</th>
-                                <th data-i18n="desorption">Desorption (cm³/g)</th>
-                                <th data-i18n="hysteresis">Hysteresis</th>
-                                <th data-i18n="bet_y">1/[V(P₀/P-1)]</th>
-                                <th data-i18n="in_range">In BET Range</th>
+                                <th>Point #</th>
+                                <th>P/P₀</th>
+                                <th>Adsorption (cm³/g)</th>
+                                <th>Desorption (cm³/g)</th>
+                                <th>Hysteresis</th>
+                                <th>1/[V(P₀/P-1)]</th>
+                                <th>In BET Range</th>
                             </tr>
                         </thead>
                         <tbody id="betDataTableBody">
-                            <tr><td colspan="7" class="empty-row" data-i18n="upload_data">Upload data to see isotherm details</td></tr>
+                            <tr><td colspan="7" class="empty-row">Upload data to see isotherm details</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -152,7 +215,6 @@
         </div>
     </section>
 
-    <script src="../js/lang.js"></script>
     <script src="../js/main.js"></script>
     <script src="../js/bet.js"></script>
 </body>

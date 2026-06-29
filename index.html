@@ -5,15 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BioChar Lab - Environmental Engineering Research</title>
     <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-    <!-- Language Toggle -->
-    <div class="lang-toggle">
-        <button data-lang="en" class="active" onclick="setLanguage('en')">EN</button>
-        <button data-lang="zh" onclick="setLanguage('zh')">中文</button>
-    </div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
 
     <nav class="navbar">
         <a href="index.html" class="nav-brand">
@@ -21,135 +19,159 @@
             <span>BioChar Lab</span>
         </a>
         <ul class="nav-links">
-            <li><a href="index.html" class="active" data-i18n="home">Home</a></li>
+            <li><a href="index.html" class="active">Home</a></li>
             <li><a href="pages/xrd.html">XRD</a></li>
             <li><a href="pages/ftir.html">FTIR</a></li>
             <li><a href="pages/bet.html">BET</a></li>
-            <li><a href="#projects" data-i18n="projects">Projects</a></li>
-            <li><a href="#contact" data-i18n="contact">Contact</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
         </ul>
         <div class="hamburger"><span></span><span></span><span></span></div>
     </nav>
 
-    <section class="hero">
-        <div class="hero-content">
-            <h1 data-i18n="hero_title">Environmental Engineering</h1>
-            <h1><span data-i18n="hero_subtitle">Research & Analysis</span></h1>
-            <p data-i18n="hero_desc">Advanced characterization tools for biochar, adsorbents, and water treatment materials. Upload XRD, FTIR, BET data for instant visualization and analysis.</p>
-            <div class="hero-buttons">
-                <a href="pages/xrd.html" class="btn btn-primary"><i class="fas fa-chart-line"></i> <span data-i18n="start_analysis">Start Analysis</span></a>
-                <a href="#projects" class="btn btn-secondary"><i class="fas fa-folder-open"></i> <span data-i18n="view_projects">View Projects</span></a>
+    <section id="home" style="min-height:100vh;display:flex;align-items:center;justify-content:space-between;padding:8rem 4rem 4rem;position:relative;overflow:hidden;">
+        <div style="max-width:600px;z-index:1;">
+            <h1 style="font-size:4rem;font-weight:800;line-height:1.1;margin-bottom:1.5rem;">Environmental Engineering<br><span style="background:linear-gradient(135deg,#6366f1,#ec4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Research & Analysis</span></h1>
+            <p style="font-size:1.2rem;color:var(--text-muted);margin-bottom:2.5rem;line-height:1.8;">Advanced characterization tools for biochar, adsorbents, and water treatment materials. Upload XRD, FTIR, BET data for instant visualization and analysis.</p>
+            <div style="display:flex;gap:1rem;">
+                <a href="pages/xrd.html" class="btn btn-primary"><i class="fas fa-chart-line"></i> Start Analysis</a>
+                <a href="#projects" class="btn btn-secondary"><i class="fas fa-folder-open"></i> View Projects</a>
+            </div>
+        </div>
+        <div style="position:relative;width:450px;height:450px;z-index:1;">
+            <div style="position:relative;width:100%;height:100%;display:flex;align-items:center;justify-content:center;">
+                <div style="position:absolute;width:70px;height:70px;border-radius:50%;background:linear-gradient(135deg,#6366f1,#ec4899);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.8rem;color:white;box-shadow:0 0 30px rgba(99,102,241,0.4);top:30%;left:35%;animation:atomPulse 3s ease-in-out infinite;">C</div>
+                <div style="position:absolute;width:55px;height:55px;border-radius:50%;background:linear-gradient(135deg,#06b6d4,#6366f1);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.8rem;color:white;box-shadow:0 0 30px rgba(6,182,212,0.4);top:20%;right:30%;animation:atomPulse 3s ease-in-out infinite 0.5s;">O</div>
+                <div style="position:absolute;width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#f59e0b,#ec4899);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.8rem;color:white;box-shadow:0 0 30px rgba(245,158,11,0.4);bottom:25%;left:40%;animation:atomPulse 3s ease-in-out infinite 1s;">Fe</div>
+                <div style="position:absolute;width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,#10b981,#06b6d4);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.8rem;color:white;box-shadow:0 0 30px rgba(16,185,129,0.4);top:45%;right:25%;animation:atomPulse 3s ease-in-out infinite 1.5s;">N</div>
+                <div style="position:absolute;width:45px;height:45px;border-radius:50%;background:linear-gradient(135deg,#a855f7,#ec4899);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.8rem;color:white;box-shadow:0 0 30px rgba(168,85,247,0.4);bottom:35%;right:35%;animation:atomPulse 3s ease-in-out infinite 2s;">H</div>
             </div>
         </div>
     </section>
 
-    <!-- Analysis Tools -->
-    <section class="analysis-section">
+    <style>
+    @keyframes atomPulse {
+        0%,100%{transform:scale(1);box-shadow:0 0 20px currentColor;}
+        50%{transform:scale(1.1);box-shadow:0 0 40px currentColor;}
+    }
+    </style>
+
+    <!-- Analysis Tools Cards -->
+    <section style="padding:4rem;position:relative;z-index:1;">
         <div class="section-header">
-            <span class="section-tag"><i class="fas fa-tools"></i> <span data-i18n="analysis_tools">Analysis Tools</span></span>
-            <h2 data-i18n="choose_tool">Choose Your Characterization Method</h2>
-            <p data-i18n="click_tool">Click any tool to open its dedicated analysis page.</p>
+            <span class="section-tag"><i class="fas fa-tools"></i> Analysis Tools</span>
+            <h2>Choose Your Characterization Method</h2>
+            <p>Click any tool to open its dedicated analysis page with full features.</p>
         </div>
-        <div class="tool-cards">
-            <a href="pages/xrd.html" class="tool-card-link">
-                <div class="tool-card-main">
-                    <i class="fas fa-wave-square tool-card-icon"></i>
-                    <h3>XRD</h3>
-                    <p data-i18n="xrd_desc">Peak detection, d-spacing, crystallinity index, crystallite size</p>
-                    <span class="tool-card-link-text" data-i18n="open_xrd">Open XRD Tool <i class="fas fa-arrow-right"></i></span>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;max-width:1200px;margin:0 auto;">
+            <a href="pages/xrd.html" style="text-decoration:none;">
+                <div style="background:var(--bg-card);border-radius:var(--radius);border:1px solid var(--border);padding:2.5rem;text-align:center;transition:var(--transition);position:relative;overflow:hidden;cursor:pointer;">
+                    <div style="position:absolute;top:0;left:0;right:0;height:4px;background:var(--gradient-1);transform:scaleX(0);transition:transform 0.3s;"></div>
+                    <div onmouseover="this.parentElement.style.transform='translateY(-8px)';this.parentElement.style.boxShadow='0 20px 50px rgba(99,102,241,0.15)';this.parentElement.querySelector('div').style.transform='scaleX(1)'" onmouseout="this.parentElement.style.transform='translateY(0)';this.parentElement.style.boxShadow='none';this.parentElement.querySelector('div').style.transform='scaleX(0)'">
+                        <i class="fas fa-wave-square" style="font-size:3rem;background:var(--gradient-1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:1rem;display:block;"></i>
+                        <h3 style="font-size:1.3rem;font-weight:700;margin-bottom:0.5rem;color:var(--text);">XRD Analysis</h3>
+                        <p style="color:var(--text-muted);font-size:0.9rem;margin-bottom:1rem;">Peak detection, d-spacing, crystallinity index, crystallite size</p>
+                        <span style="color:var(--primary-light);font-weight:600;font-size:0.85rem;">Open XRD Tool <i class="fas fa-arrow-right"></i></span>
+                    </div>
                 </div>
             </a>
-            <a href="pages/ftir.html" class="tool-card-link">
-                <div class="tool-card-main">
-                    <i class="fas fa-signature tool-card-icon"></i>
-                    <h3>FTIR</h3>
-                    <p data-i18n="ftir_desc">Functional group ID, band assignment, baseline correction</p>
-                    <span class="tool-card-link-text" data-i18n="open_ftir">Open FTIR Tool <i class="fas fa-arrow-right"></i></span>
+            <a href="pages/ftir.html" style="text-decoration:none;">
+                <div style="background:var(--bg-card);border-radius:var(--radius);border:1px solid var(--border);padding:2.5rem;text-align:center;transition:var(--transition);position:relative;overflow:hidden;cursor:pointer;">
+                    <div style="position:absolute;top:0;left:0;right:0;height:4px;background:var(--gradient-2);transform:scaleX(0);transition:transform 0.3s;"></div>
+                    <div onmouseover="this.parentElement.style.transform='translateY(-8px)';this.parentElement.style.boxShadow='0 20px 50px rgba(6,182,212,0.15)';this.parentElement.querySelector('div').style.transform='scaleX(1)'" onmouseout="this.parentElement.style.transform='translateY(0)';this.parentElement.style.boxShadow='none';this.parentElement.querySelector('div').style.transform='scaleX(0)'">
+                        <i class="fas fa-signature" style="font-size:3rem;background:var(--gradient-2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:1rem;display:block;"></i>
+                        <h3 style="font-size:1.3rem;font-weight:700;margin-bottom:0.5rem;color:var(--text);">FTIR Analysis</h3>
+                        <p style="color:var(--text-muted);font-size:0.9rem;margin-bottom:1rem;">Functional group ID, band assignment, baseline correction</p>
+                        <span style="color:var(--cyan);font-weight:600;font-size:0.85rem;">Open FTIR Tool <i class="fas fa-arrow-right"></i></span>
+                    </div>
                 </div>
             </a>
-            <a href="pages/bet.html" class="tool-card-link">
-                <div class="tool-card-main">
-                    <i class="fas fa-layer-group tool-card-icon"></i>
-                    <h3>BET</h3>
-                    <p data-i18n="bet_desc">Surface area, pore volume, isotherm classification, BJH</p>
-                    <span class="tool-card-link-text" data-i18n="open_bet">Open BET Tool <i class="fas fa-arrow-right"></i></span>
+            <a href="pages/bet.html" style="text-decoration:none;">
+                <div style="background:var(--bg-card);border-radius:var(--radius);border:1px solid var(--border);padding:2.5rem;text-align:center;transition:var(--transition);position:relative;overflow:hidden;cursor:pointer;">
+                    <div style="position:absolute;top:0;left:0;right:0;height:4px;background:var(--gradient-3);transform:scaleX(0);transition:transform 0.3s;"></div>
+                    <div onmouseover="this.parentElement.style.transform='translateY(-8px)';this.parentElement.style.boxShadow='0 20px 50px rgba(245,158,11,0.15)';this.parentElement.querySelector('div').style.transform='scaleX(1)'" onmouseout="this.parentElement.style.transform='translateY(0)';this.parentElement.style.boxShadow='none';this.parentElement.querySelector('div').style.transform='scaleX(0)'">
+                        <i class="fas fa-layer-group" style="font-size:3rem;background:var(--gradient-3);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:1rem;display:block;"></i>
+                        <h3 style="font-size:1.3rem;font-weight:700;margin-bottom:0.5rem;color:var(--text);">BET Analysis</h3>
+                        <p style="color:var(--text-muted);font-size:0.9rem;margin-bottom:1rem;">Surface area, pore volume, isotherm classification, BJH</p>
+                        <span style="color:var(--accent);font-weight:600;font-size:0.85rem;">Open BET Tool <i class="fas fa-arrow-right"></i></span>
+                    </div>
                 </div>
             </a>
         </div>
     </section>
 
     <!-- Stats -->
-    <section class="stats-bar">
-        <div class="stat-card">
-            <i class="fas fa-microscope"></i>
-            <span class="stat-number">150+</span>
-            <span class="stat-label" data-i18n="samples">Samples Analyzed</span>
+    <section style="display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;padding:3rem 4rem;position:relative;z-index:1;">
+        <div style="background:var(--bg-card);border-radius:var(--radius);padding:2rem;text-align:center;border:1px solid var(--border);transition:var(--transition);" onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 10px 40px rgba(99,102,241,0.15)'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='none'">
+            <i class="fas fa-microscope" style="font-size:2.5rem;color:var(--primary);margin-bottom:0.75rem;display:block;"></i>
+            <span style="display:block;font-size:2.5rem;font-weight:800;background:var(--gradient-1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">150+</span>
+            <span style="font-size:0.9rem;color:var(--text-muted);">Samples Analyzed</span>
         </div>
-        <div class="stat-card">
-            <i class="fas fa-flask"></i>
-            <span class="stat-number">12</span>
-            <span class="stat-label" data-i18n="research">Research Projects</span>
+        <div style="background:var(--bg-card);border-radius:var(--radius);padding:2rem;text-align:center;border:1px solid var(--border);transition:var(--transition);" onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 10px 40px rgba(236,72,153,0.15)'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='none'">
+            <i class="fas fa-flask" style="font-size:2.5rem;color:var(--secondary);margin-bottom:0.75rem;display:block;"></i>
+            <span style="display:block;font-size:2.5rem;font-weight:800;background:var(--gradient-1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">12</span>
+            <span style="font-size:0.9rem;color:var(--text-muted);">Research Projects</span>
         </div>
-        <div class="stat-card">
-            <i class="fas fa-file-alt"></i>
-            <span class="stat-number">8</span>
-            <span class="stat-label" data-i18n="publications">Publications</span>
+        <div style="background:var(--bg-card);border-radius:var(--radius);padding:2rem;text-align:center;border:1px solid var(--border);transition:var(--transition);" onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 10px 40px rgba(6,182,212,0.15)'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='none'">
+            <i class="fas fa-file-alt" style="font-size:2.5rem;color:var(--cyan);margin-bottom:0.75rem;display:block;"></i>
+            <span style="display:block;font-size:2.5rem;font-weight:800;background:var(--gradient-1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">8</span>
+            <span style="font-size:0.9rem;color:var(--text-muted);">Publications</span>
         </div>
-        <div class="stat-card">
-            <i class="fas fa-award"></i>
-            <span class="stat-number">3</span>
-            <span class="stat-label" data-i18n="q1">Q1 Journals</span>
+        <div style="background:var(--bg-card);border-radius:var(--radius);padding:2rem;text-align:center;border:1px solid var(--border);transition:var(--transition);" onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 10px 40px rgba(245,158,11,0.15)'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='none'">
+            <i class="fas fa-award" style="font-size:2.5rem;color:var(--accent);margin-bottom:0.75rem;display:block;"></i>
+            <span style="display:block;font-size:2.5rem;font-weight:800;background:var(--gradient-1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">3</span>
+            <span style="font-size:0.9rem;color:var(--text-muted);">Q1 Journals</span>
         </div>
     </section>
 
     <!-- Projects -->
     <section id="projects" class="analysis-section alt-bg">
         <div class="section-header">
-            <span class="section-tag"><i class="fas fa-flask"></i> <span data-i18n="current_projects">Current Research Projects</span></span>
-            <h2 data-i18n="current_projects">Current Research Projects</h2>
-            <p data-i18n="project_desc">Environmental engineering research focused on biochar-based materials for water treatment.</p>
+            <span class="section-tag"><i class="fas fa-flask"></i> Research Projects</span>
+            <h2>Current Research Projects</h2>
+            <p>Environmental engineering research focused on biochar-based materials for water treatment.</p>
         </div>
-        <div class="projects-grid">
-            <div class="project-card">
-                <div class="project-image"><i class="fas fa-seedling"></i></div>
-                <div class="project-content">
-                    <span class="project-tag" data-i18n="q1_target">Q1 Target</span>
-                    <h3 data-i18n="cd_removal">Tea Branch Biochar for Cd²⁺ Removal</h3>
-                    <p data-i18n="cd_desc">Preparation and characterization of tea branch biochar for cadmium removal from aqueous solutions.</p>
-                    <div class="project-progress"><div class="progress-bar" style="width: 85%"></div></div>
-                    <div class="project-chars">
-                        <span class="char-badge">XRD</span>
-                        <span class="char-badge">FTIR</span>
-                        <span class="char-badge">BET</span>
-                        <span class="char-badge">SEM-EDS</span>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;max-width:1200px;margin:0 auto;">
+            <div style="background:var(--bg-card);border-radius:var(--radius);border:1px solid var(--border);overflow:hidden;transition:var(--transition);" onmouseover="this.style.transform='translateY(-8px)';this.style.boxShadow='0 20px 50px rgba(99,102,241,0.15)'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='none'">
+                <div style="height:160px;background:var(--gradient-1);display:flex;align-items:center;justify-content:center;font-size:3rem;color:white;"><i class="fas fa-seedling"></i></div>
+                <div style="padding:1.5rem;">
+                    <span style="display:inline-block;padding:0.25rem 0.75rem;background:rgba(99,102,241,0.15);color:var(--primary-light);border-radius:50px;font-size:0.75rem;font-weight:700;margin-bottom:0.75rem;">Q1 Target</span>
+                    <h3 style="font-size:1.2rem;font-weight:700;margin-bottom:0.75rem;">Tea Branch Biochar for Cd²⁺ Removal</h3>
+                    <p style="font-size:0.9rem;color:var(--text-muted);margin-bottom:1rem;">Preparation and characterization of tea branch biochar for cadmium removal from aqueous solutions.</p>
+                    <div style="height:4px;background:var(--border);border-radius:2px;margin-bottom:1rem;overflow:hidden;"><div style="height:100%;width:85%;background:var(--gradient-1);border-radius:2px;"></div></div>
+                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
+                        <span style="padding:0.25rem 0.6rem;border-radius:4px;font-size:0.75rem;font-weight:700;background:rgba(99,102,241,0.2);color:#a5b4fc;">XRD</span>
+                        <span style="padding:0.25rem 0.6rem;border-radius:4px;font-size:0.75rem;font-weight:700;background:rgba(16,185,129,0.2);color:#6ee7b7;">FTIR</span>
+                        <span style="padding:0.25rem 0.6rem;border-radius:4px;font-size:0.75rem;font-weight:700;background:rgba(245,158,11,0.2);color:#fcd34d;">BET</span>
+                        <span style="padding:0.25rem 0.6rem;border-radius:4px;font-size:0.75rem;font-weight:700;background:rgba(236,72,153,0.2);color:#f9a8d4;">SEM-EDS</span>
                     </div>
                 </div>
             </div>
-            <div class="project-card">
-                <div class="project-image"><i class="fas fa-tint"></i></div>
-                <div class="project-content">
-                    <span class="project-tag" data-i18n="in_progress">In Progress</span>
-                    <h3 data-i18n="pnp">PNP Degradation Study</h3>
-                    <p data-i18n="pnp_desc">p-Nitrophenol degradation using modified biochar catalysts. Kinetic modeling.</p>
-                    <div class="project-progress"><div class="progress-bar" style="width: 60%"></div></div>
-                    <div class="project-chars">
-                        <span class="char-badge">UV-Vis</span>
-                        <span class="char-badge">HPLC</span>
-                        <span class="char-badge">GC-MS</span>
+            <div style="background:var(--bg-card);border-radius:var(--radius);border:1px solid var(--border);overflow:hidden;transition:var(--transition);" onmouseover="this.style.transform='translateY(-8px)';this.style.boxShadow='0 20px 50px rgba(6,182,212,0.15)'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='none'">
+                <div style="height:160px;background:var(--gradient-2);display:flex;align-items:center;justify-content:center;font-size:3rem;color:white;"><i class="fas fa-tint"></i></div>
+                <div style="padding:1.5rem;">
+                    <span style="display:inline-block;padding:0.25rem 0.75rem;background:rgba(6,182,212,0.15);color:var(--cyan);border-radius:50px;font-size:0.75rem;font-weight:700;margin-bottom:0.75rem;">In Progress</span>
+                    <h3 style="font-size:1.2rem;font-weight:700;margin-bottom:0.75rem;">PNP Degradation Study</h3>
+                    <p style="font-size:0.9rem;color:var(--text-muted);margin-bottom:1rem;">p-Nitrophenol degradation using modified biochar catalysts. Kinetic modeling.</p>
+                    <div style="height:4px;background:var(--border);border-radius:2px;margin-bottom:1rem;overflow:hidden;"><div style="height:100%;width:60%;background:var(--gradient-2);border-radius:2px;"></div></div>
+                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
+                        <span style="padding:0.25rem 0.6rem;border-radius:4px;font-size:0.75rem;font-weight:700;background:rgba(168,85,247,0.2);color:#c4b5fd;">UV-Vis</span>
+                        <span style="padding:0.25rem 0.6rem;border-radius:4px;font-size:0.75rem;font-weight:700;background:rgba(236,72,153,0.2);color:#f9a8d4;">HPLC</span>
+                        <span style="padding:0.25rem 0.6rem;border-radius:4px;font-size:0.75rem;font-weight:700;background:rgba(14,165,233,0.2);color:#38bdf8;">GC-MS</span>
                     </div>
                 </div>
             </div>
-            <div class="project-card">
-                <div class="project-image"><i class="fas fa-filter"></i></div>
-                <div class="project-content">
-                    <span class="project-tag" data-i18n="planning">Planning</span>
-                    <h3 data-i18n="as_removal">Fe-Modified Biochar for As Removal</h3>
-                    <p data-i18n="as_desc">Iron-impregnated biochar for arsenic removal from groundwater.</p>
-                    <div class="project-progress"><div class="progress-bar" style="width: 15%"></div></div>
-                    <div class="project-chars">
-                        <span class="char-badge">XRD</span>
-                        <span class="char-badge">XPS</span>
-                        <span class="char-badge">BET</span>
+            <div style="background:var(--bg-card);border-radius:var(--radius);border:1px solid var(--border);overflow:hidden;transition:var(--transition);" onmouseover="this.style.transform='translateY(-8px)';this.style.boxShadow='0 20px 50px rgba(245,158,11,0.15)'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='none'">
+                <div style="height:160px;background:var(--gradient-3);display:flex;align-items:center;justify-content:center;font-size:3rem;color:white;"><i class="fas fa-filter"></i></div>
+                <div style="padding:1.5rem;">
+                    <span style="display:inline-block;padding:0.25rem 0.75rem;background:rgba(245,158,11,0.15);color:var(--accent);border-radius:50px;font-size:0.75rem;font-weight:700;margin-bottom:0.75rem;">Planning</span>
+                    <h3 style="font-size:1.2rem;font-weight:700;margin-bottom:0.75rem;">Fe-Modified Biochar for As Removal</h3>
+                    <p style="font-size:0.9rem;color:var(--text-muted);margin-bottom:1rem;">Iron-impregnated biochar for arsenic removal from groundwater.</p>
+                    <div style="height:4px;background:var(--border);border-radius:2px;margin-bottom:1rem;overflow:hidden;"><div style="height:100%;width:15%;background:var(--gradient-3);border-radius:2px;"></div></div>
+                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
+                        <span style="padding:0.25rem 0.6rem;border-radius:4px;font-size:0.75rem;font-weight:700;background:rgba(99,102,241,0.2);color:#a5b4fc;">XRD</span>
+                        <span style="padding:0.25rem 0.6rem;border-radius:4px;font-size:0.75rem;font-weight:700;background:rgba(234,179,8,0.2);color:#facc15;">XPS</span>
+                        <span style="padding:0.25rem 0.6rem;border-radius:4px;font-size:0.75rem;font-weight:700;background:rgba(245,158,11,0.2);color:#fcd34d;">BET</span>
                     </div>
                 </div>
             </div>
@@ -159,62 +181,59 @@
     <!-- Contact -->
     <section id="contact" class="analysis-section">
         <div class="section-header">
-            <span class="section-tag"><i class="fas fa-envelope"></i> <span data-i18n="get_in_touch">Get In Touch</span></span>
-            <h2 data-i18n="get_in_touch">Get In Touch</h2>
-            <p data-i18n="collaboration">For collaboration, data sharing, or research inquiries.</p>
+            <span class="section-tag"><i class="fas fa-envelope"></i> Contact</span>
+            <h2>Get In Touch</h2>
+            <p>For collaboration, data sharing, or research inquiries.</p>
         </div>
-        <div class="contact-grid">
-            <div class="contact-info">
-                <div class="contact-item">
-                    <i class="fas fa-university"></i>
-                    <div><h4 data-i18n="institution">Institution</h4><p data-i18n="env_eng">Environmental Engineering Department</p></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;max-width:1000px;margin:0 auto;">
+            <div style="display:flex;flex-direction:column;gap:1.5rem;">
+                <div style="display:flex;align-items:flex-start;gap:1rem;padding:1.5rem;background:var(--bg-card);border-radius:var(--radius);border:1px solid var(--border);transition:var(--transition);" onmouseover="this.style.transform='translateX(5px)';this.style.borderColor='var(--primary)'" onmouseout="this.style.transform='translateX(0)';this.style.borderColor='var(--border)'">
+                    <i class="fas fa-university" style="font-size:1.5rem;width:40px;height:40px;display:flex;align-items:center;justify-content:center;border-radius:10px;background:var(--gradient-1);color:white;"></i>
+                    <div><h4 style="font-size:1rem;font-weight:700;margin-bottom:0.25rem;">Institution</h4><p style="font-size:0.9rem;color:var(--text-muted);">Environmental Engineering Department</p></div>
                 </div>
-                <div class="contact-item">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <div><h4 data-i18n="location">Location</h4><p data-i18n="china">China</p></div>
+                <div style="display:flex;align-items:flex-start;gap:1rem;padding:1.5rem;background:var(--bg-card);border-radius:var(--radius);border:1px solid var(--border);transition:var(--transition);" onmouseover="this.style.transform='translateX(5px)';this.style.borderColor='var(--primary)'" onmouseout="this.style.transform='translateX(0)';this.style.borderColor='var(--border)'">
+                    <i class="fas fa-map-marker-alt" style="font-size:1.5rem;width:40px;height:40px;display:flex;align-items:center;justify-content:center;border-radius:10px;background:var(--gradient-1);color:white;"></i>
+                    <div><h4 style="font-size:1rem;font-weight:700;margin-bottom:0.25rem;">Location</h4><p style="font-size:0.9rem;color:var(--text-muted);">China</p></div>
                 </div>
-                <div class="contact-item">
-                    <i class="fas fa-graduation-cap"></i>
-                    <div><h4 data-i18n="research_focus">Research Focus</h4><p data-i18n="biochar_water">Biochar, Water Treatment, Heavy Metal Removal</p></div>
+                <div style="display:flex;align-items:flex-start;gap:1rem;padding:1.5rem;background:var(--bg-card);border-radius:var(--radius);border:1px solid var(--border);transition:var(--transition);" onmouseover="this.style.transform='translateX(5px)';this.style.borderColor='var(--primary)'" onmouseout="this.style.transform='translateX(0)';this.style.borderColor='var(--border)'">
+                    <i class="fas fa-graduation-cap" style="font-size:1.5rem;width:40px;height:40px;display:flex;align-items:center;justify-content:center;border-radius:10px;background:var(--gradient-1);color:white;"></i>
+                    <div><h4 style="font-size:1rem;font-weight:700;margin-bottom:0.25rem;">Research Focus</h4><p style="font-size:0.9rem;color:var(--text-muted);">Biochar, Water Treatment, Heavy Metal Removal</p></div>
                 </div>
-                <div class="contact-item">
-                    <i class="fab fa-github"></i>
-                    <div><h4>GitHub</h4><p><a href="https://github.com/marufhossain0097" target="_blank">github.com/marufhossain0097</a></p></div>
+                <div style="display:flex;align-items:flex-start;gap:1rem;padding:1.5rem;background:var(--bg-card);border-radius:var(--radius);border:1px solid var(--border);transition:var(--transition);" onmouseover="this.style.transform='translateX(5px)';this.style.borderColor='var(--primary)'" onmouseout="this.style.transform='translateX(0)';this.style.borderColor='var(--border)'">
+                    <i class="fab fa-github" style="font-size:1.5rem;width:40px;height:40px;display:flex;align-items:center;justify-content:center;border-radius:10px;background:var(--gradient-1);color:white;"></i>
+                    <div><h4 style="font-size:1rem;font-weight:700;margin-bottom:0.25rem;">GitHub</h4><p style="font-size:0.9rem;"><a href="https://github.com/marufhossain0097" target="_blank" style="color:var(--primary-light);text-decoration:none;">github.com/marufhossain0097</a></p></div>
                 </div>
             </div>
-            <div class="contact-form-wrapper">
+            <div style="background:var(--bg-card);border-radius:var(--radius);border:1px solid var(--border);padding:2rem;position:relative;overflow:hidden;">
+                <div style="position:absolute;top:-50%;right:-50%;width:300px;height:300px;background:var(--gradient-1);border-radius:50%;opacity:0.05;filter:blur(50px);"></div>
                 <form onsubmit="event.preventDefault();showNotification('Message sent!');this.reset();">
-                    <div class="form-group"><label data-i18n="name">Name</label><input type="text" placeholder="Your name" required></div>
-                    <div class="form-group"><label data-i18n="email">Email</label><input type="email" placeholder="your@email.com" required></div>
-                    <div class="form-group"><label data-i18n="subject">Subject</label>
-                        <select>
-                            <option data-i18n="research_collab">Research Collaboration</option>
-                            <option data-i18n="data_help">Data Analysis Help</option>
-                            <option data-i18n="general">General Inquiry</option>
-                        </select>
-                    </div>
-                    <div class="form-group"><label data-i18n="message">Message</label><textarea rows="4" placeholder="Your message..." required></textarea></div>
-                    <button type="submit" class="btn btn-primary btn-full"><i class="fas fa-paper-plane"></i> <span data-i18n="send_message">Send Message</span></button>
+                    <div style="margin-bottom:1.25rem;"><label style="display:block;font-size:0.9rem;font-weight:600;margin-bottom:0.5rem;color:var(--text-muted);">Name</label><input type="text" placeholder="Your name" required style="width:100%;padding:1rem;background:var(--bg-light);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);font-size:0.95rem;"></div>
+                    <div style="margin-bottom:1.25rem;"><label style="display:block;font-size:0.9rem;font-weight:600;margin-bottom:0.5rem;color:var(--text-muted);">Email</label><input type="email" placeholder="your@email.com" required style="width:100%;padding:1rem;background:var(--bg-light);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);font-size:0.95rem;"></div>
+                    <div style="margin-bottom:1.25rem;"><label style="display:block;font-size:0.9rem;font-weight:600;margin-bottom:0.5rem;color:var(--text-muted);">Message</label><textarea rows="4" placeholder="Your message..." required style="width:100%;padding:1rem;background:var(--bg-light);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);font-size:0.95rem;resize:vertical;min-height:100px;"></textarea></div>
+                    <button type="submit" class="btn btn-primary btn-full"><i class="fas fa-paper-plane"></i> Send Message</button>
                 </form>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-brand"><i class="fas fa-leaf"></i><span>BioChar Lab</span></div>
-        <p data-i18n="platform">Environmental Engineering Research & Data Analysis Platform</p>
-        <div class="footer-links">
-            <a href="index.html" data-i18n="home">Home</a>
-            <a href="pages/xrd.html">XRD</a>
-            <a href="pages/ftir.html">FTIR</a>
-            <a href="pages/bet.html">BET</a>
-            <a href="index.html#projects" data-i18n="projects">Projects</a>
+    <footer style="background:var(--bg-light);border-top:1px solid var(--border);padding:3rem 4rem 1.5rem;text-align:center;position:relative;z-index:1;">
+        <div style="display:flex;align-items:center;justify-content:center;gap:0.75rem;font-size:1.8rem;font-weight:800;background:var(--gradient-1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:0.75rem;"><i class="fas fa-leaf"></i><span>BioChar Lab</span></div>
+        <p style="color:var(--text-muted);margin-bottom:1.5rem;">Environmental Engineering Research & Data Analysis Platform</p>
+        <div style="display:flex;justify-content:center;gap:2rem;margin-bottom:2rem;">
+            <a href="index.html" style="color:var(--text-muted);text-decoration:none;font-weight:600;">Home</a>
+            <a href="pages/xrd.html" style="color:var(--text-muted);text-decoration:none;font-weight:600;">XRD</a>
+            <a href="pages/ftir.html" style="color:var(--text-muted);text-decoration:none;font-weight:600;">FTIR</a>
+            <a href="pages/bet.html" style="color:var(--text-muted);text-decoration:none;font-weight:600;">BET</a>
+            <a href="index.html#projects" style="color:var(--text-muted);text-decoration:none;font-weight:600;">Projects</a>
         </div>
-        <div class="footer-bottom"><p data-i18n="built_for">Built for research. Open source.</p></div>
+        <div style="border-top:1px solid var(--border);padding-top:1.5rem;font-size:0.85rem;color:var(--text-dark);"><p>Built for research. Open source. <i class="fas fa-heart" style="color:var(--secondary);animation:heartbeat 1.5s ease-in-out infinite;"></i></p></div>
     </footer>
 
-    <script src="js/lang.js"></script>
+    <style>
+    @keyframes heartbeat { 0%,100%{transform:scale(1);} 50%{transform:scale(1.2);} }
+    </style>
+
     <script src="js/main.js"></script>
 </body>
 </html>

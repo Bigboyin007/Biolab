@@ -90,8 +90,8 @@ function plotXRDChart(title = 'XRD Pattern') {
             datasets: [{
                 label: 'Intensity (%)',
                 data: normalizedInt,
-                borderColor: '#4ec9b0',
-                backgroundColor: 'rgba(78, 201, 176, 0.05)',
+                borderColor: '#6366f1',
+                backgroundColor: 'rgba(99, 102, 241, 0.08)',
                 borderWidth: 1.5,
                 pointRadius: 0,
                 pointHoverRadius: 4,
@@ -253,9 +253,9 @@ function updatePeakAnnotations() {
         annotations[`peak${idx}`] = {
             type: 'line',
             xMin: peak.theta, xMax: peak.theta,
-            borderColor: 'rgba(206, 145, 120, 0.6)',
+            borderColor: 'rgba(236, 72, 153, 0.6)',
             borderWidth: 1, borderDash: [4, 4],
-            label: { display: true, content: `${peak.theta.toFixed(2)}°`, position: 'top', color: '#ce9178', font: { size: 10 } }
+            label: { display: true, content: `${peak.theta.toFixed(2)}°`, position: 'top', color: '#f472b6', font: { size: 10 } }
         };
     });
     xrdChart.options.plugins.annotation.annotations = annotations;

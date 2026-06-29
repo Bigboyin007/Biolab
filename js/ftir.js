@@ -105,8 +105,8 @@ function plotFTIRChart(title = 'FTIR Spectrum') {
             datasets: [{
                 label: ftirMode === 'transmittance' ? 'Transmittance (%)' : 'Absorbance (a.u.)',
                 data: data,
-                borderColor: '#4fc1ff',
-                backgroundColor: 'rgba(79, 193, 255, 0.05)',
+                borderColor: '#ec4899',
+                backgroundColor: 'rgba(236, 72, 153, 0.05)',
                 borderWidth: 1.5,
                 pointRadius: 0,
                 pointHoverRadius: 4,
