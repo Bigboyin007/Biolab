@@ -1,24 +1,6 @@
-# BioChar Lab - Multi-Page Research Platform
+# Bio Lab - Multi-Page Research Platform
 
 A modern, colorful web application for environmental engineering research with separate pages for each analysis tool.
-
-## Structure
-```
-biochar-lab/
-├── index.html          # Home page with tool cards
-├── css/
-│   └── style.css       # Shared colorful theme
-├── js/
-│   ├── main.js         # Shared utilities, downloads, notifications
-│   ├── xrd.js          # XRD analysis module
-│   ├── ftir.js         # FTIR analysis module
-│   └── bet.js          # BET analysis module
-├── pages/
-│   ├── xrd.html        # Dedicated XRD page
-│   ├── ftir.html       # Dedicated FTIR page
-│   └── bet.html        # Dedicated BET page
-└── README.md
-```
 
 ## Features
 
