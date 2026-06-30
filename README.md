@@ -37,8 +37,7 @@ bio-lab/
 │   ├── xrd.html        # XRD page (no lang toggle)
 │   ├── ftir.html       # FTIR page (no lang toggle)
 │   └── bet.html        # BET page (no lang toggle)
-└── assets/
-    └── origin-bg.png    # Background image
+
 ```
 
 ## Deploy to GitHub Pages
