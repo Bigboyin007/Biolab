@@ -22,27 +22,4 @@ A professional dark-themed research platform with OriginPro-inspired design.
 | Data (TXT) | Tab-delimited export |
 | Full Report | Complete analysis summary |
 
-## Structure
-```
-bio-lab/
-├── index.html          # Home page (has language toggle)
-├── css/style.css       # OriginPro dark theme
-├── js/
-│   ├── lang.js         # Language system (EN/ZH)
-│   ├── main.js         # Shared utilities + white BG export
-│   ├── xrd.js          # XRD analysis
-│   ├── ftir.js         # FTIR analysis
-│   └── bet.js          # BET analysis
-├── pages/
-│   ├── xrd.html        # XRD page (no lang toggle)
-│   ├── ftir.html       # FTIR page (no lang toggle)
-│   └── bet.html        # BET page (no lang toggle)
-└── assets/
-    └── origin-bg.png    # Background image
-```
 
-## Deploy to GitHub Pages
-1. Create new repo on GitHub
-2. Upload ALL files maintaining folder structure
-3. Settings → Pages → Deploy from branch → main → Save
-4. Visit: `https://yourusername.github.io/bio-lab/`
