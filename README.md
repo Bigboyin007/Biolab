@@ -1,104 +1,48 @@
-# BioChar Lab - Environmental Engineering Research Platform
+# Bio Lab - Environmental Engineering Research Platform
 
-A modern, dark-themed web application for environmental engineering research data analysis. Built specifically for biochar characterization and water treatment material analysis.
+A professional dark-themed research platform with OriginPro-inspired design.
 
 ## Features
+- **OriginPro 2024 Dark Theme** - VS Code-like dark UI with subtle background
+- **Chinese/English Language Toggle** - Only on main page (saves preference across pages)
+- **White Background Export** - PNG export with white background and no grid lines for publications
+- **Separate Pages** - XRD, FTIR, BET each have dedicated analysis pages
+- **Multiple Export Options** - PNG 300/600/1000 DPI, White BG, CSV, TXT, Full Report
 
-### XRD Analysis
-- Upload XRD data files (.txt, .csv, .xy, .xrdml)
-- Automatic peak detection with customizable threshold
-- Smoothing and noise reduction
-- d-spacing calculation using Bragg's law
-- Export charts as PNG and data as CSV
-- Sample data: Tea Branch Biochar, Activated Carbon, Fe-Modified Biochar
+## Website Name: Bio Lab
 
-### FTIR Analysis
-- Upload FTIR spectra (.txt, .csv, .spc, .jdx)
-- Automatic functional group identification
-- Transmittance/Absorbance mode toggle
-- Pre-configured biochar functional group database
-- Export charts as PNG
+## Export Options
+| Option | Description |
+|--------|-------------|
+| PNG (300 DPI) | Dark theme, with grid |
+| PNG (600 DPI) | Dark theme, with grid |
+| PNG (1000 DPI) | Dark theme, with grid |
+| PNG (White BG, No Grid) | White background, no grid, dark text - for publications |
+| Data (CSV) | Raw data export |
+| Data (TXT) | Tab-delimited export |
+| Full Report | Complete analysis summary |
 
-### BET Analysis
-- Upload N₂ adsorption/desorption isotherm data
-- Automatic isotherm type classification (Type I-IV)
-- BET surface area calculation
-- Pore volume and pore size estimation
-- BET plot (linear region) visualization
-- Export charts as PNG
-
-### Research Projects
-- Showcase current research projects
-- Progress tracking
-- Characterization method badges
-
-## File Structure
-
+## Structure
 ```
-├── index.html          # Main page
-├── css/
-│   └── style.css       # All styles (dark theme)
+bio-lab/
+├── index.html          # Home page (has language toggle)
+├── css/style.css       # OriginPro dark theme
 ├── js/
-│   ├── main.js         # Navigation, utilities, contact form
-│   ├── xrd.js          # XRD analysis module
-│   ├── ftir.js         # FTIR analysis module
-│   └── bet.js          # BET analysis module
-├── data/               # Sample data files (optional)
-└── assets/             # Images and other assets
+│   ├── lang.js         # Language system (EN/ZH)
+│   ├── main.js         # Shared utilities + white BG export
+│   ├── xrd.js          # XRD analysis
+│   ├── ftir.js         # FTIR analysis
+│   └── bet.js          # BET analysis
+├── pages/
+│   ├── xrd.html        # XRD page (no lang toggle)
+│   ├── ftir.html       # FTIR page (no lang toggle)
+│   └── bet.html        # BET page (no lang toggle)
+└── assets/
+    └── origin-bg.png    # Background image
 ```
 
-## How to Use
-
-### 1. Local Use
-Simply open `index.html` in any modern browser. No server required.
-
-### 2. GitHub Pages Deployment
-1. Create a new repository on GitHub
-2. Upload all files (maintain folder structure)
-3. Go to **Settings → Pages**
-4. Select **Deploy from a branch**
-5. Choose **main** branch and **/(root)** folder
-6. Click **Save**
-7. Your site will be live at `https://yourusername.github.io/repository-name/`
-
-### Data Format
-
-#### XRD Data
-```
-2theta, Intensity
-10.0, 245
-10.05, 248
-10.10, 252
-...
-```
-
-#### FTIR Data
-```
-Wavenumber, Transmittance
-4000, 85.2
-3998, 84.8
-3996, 85.0
-...
-```
-
-#### BET Data
-```
-P/P0, Adsorption, Desorption
-0.00, 0.0, 0.0
-0.01, 12.5, 12.3
-0.02, 25.0, 24.8
-...
-```
-
-## Technologies
-- HTML5
-- CSS3 (Custom properties, Grid, Flexbox)
-- Vanilla JavaScript (no frameworks)
-- Chart.js for data visualization
-- Font Awesome for icons
-
-## License
-MIT License - Open source for research use.
-
----
-Built for environmental engineering research. Open source.
+## Deploy to GitHub Pages
+1. Create new repo on GitHub
+2. Upload ALL files maintaining folder structure
+3. Settings → Pages → Deploy from branch → main → Save
+4. Visit: `https://yourusername.github.io/bio-lab/`

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n-title="xps_analysis">XPS Analysis - Bio Lab</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="../index.html" class="nav-brand"><i class="fas fa-leaf"></i><span>Bio Lab</span></a>
+        <ul class="nav-links">
+            <li><a href="../index.html" data-i18n="home">Home</a></li>
+            <li><a href="xrd.html">XRD</a></li>
+            <li><a href="ftir.html">FTIR</a></li>
+            <li><a href="bet.html">BET</a></li>
+            <li><a href="xps.html" class="active">XPS</a></li>
+            <li><a href="../index.html#projects" data-i18n="projects">Projects</a></li>
+        </ul>
+        <div class="hamburger"><span></span><span></span><span></span></div>
+    </nav>
+
+    <section class="analysis-section">
+        <div class="section-header">
+            <span class="section-tag"><i class="fas fa-atom"></i> <span data-i18n="xps_analysis">XPS Analysis</span></span>
+            <h2 data-i18n="xps_analysis">X-Ray Photoelectron Spectroscopy</h2>
+            <p data-i18n="xps_desc_long">Upload XPS data for elemental composition, binding energy analysis, peak fitting, and chemical state identification.</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 280px 1fr; gap: 16px;">
+            <div>
+                <div class="upload-area" id="xpsUploadArea">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <p data-i18n="drag_drop">Drag & drop files</p>
+                    <span class="upload-formats">.txt, .csv, .xy, .vms, .xlsx, .xls</span>
+                    <input type="file" id="xpsFileInput" accept=".txt,.csv,.xy,.vms,.xlsx,.xls" multiple>
+                    <button class="btn btn-outline" style="margin-top: 8px;" onclick="document.getElementById('xpsFileInput').click()">
+                        <i class="fas fa-folder-open"></i> <span data-i18n="browse">Browse</span>
+                    </button>
+                </div>
+                <div class="sample-data">
+                    <p><i class="fas fa-vial"></i> <span data-i18n="sample_data">Sample Data:</span></p>
+                    <button class="btn btn-small" onclick="loadSampleXPS('c1s')" data-i18n="c1s">C 1s Spectrum</button>
+                    <button class="btn btn-small" onclick="loadSampleXPS('o1s')" data-i18n="o1s">O 1s Spectrum</button>
+                    <button class="btn btn-small" onclick="loadSampleXPS('n1s')" data-i18n="n1s">N 1s Spectrum</button>
+                    <button class="btn btn-small" onclick="loadSampleXPS('fe2p')" data-i18n="fe2p">Fe 2p Spectrum</button>
+                    <button class="btn btn-small" onclick="loadSampleXPS('survey')" data-i18n="survey">Survey Scan</button>
+                </div>
+            </div>
+
+            <div class="chart-panel">
+                <div class="chart-toolbar">
+                    <div class="chart-title"><i class="fas fa-chart-area"></i> <span id="xpsChartTitle" data-i18n="xps_spectrum">XPS Spectrum</span></div>
+                    <div class="chart-controls">
+                        <button class="tool-btn" onclick="resetXPSChart()" title="Reset"><i class="fas fa-undo"></i></button>
+                        <button class="tool-btn" onclick="toggleXPSGrid()" title="Grid"><i class="fas fa-border-all"></i></button>
+                        <div class="download-dropdown">
+                            <button class="tool-btn" onclick="toggleDownloadMenu('xpsDownloadMenu')" title="Export"><i class="fas fa-download"></i></button>
+                            <div class="download-menu" id="xpsDownloadMenu">
+                                <button onclick="exportXPSChart(300)"><i class="fas fa-image"></i> <span data-i18n="png_300">PNG (300 DPI)</span></button>
+                                <button onclick="exportXPSChart(600)"><i class="fas fa-image"></i> <span data-i18n="png_600">PNG (600 DPI)</span></button>
+                                <button onclick="exportXPSChart(1000)"><i class="fas fa-image"></i> <span data-i18n="png_1000">PNG (1000 DPI)</span></button>
+                                <button onclick="exportXPSChart('white')"><i class="fas fa-file-image"></i> <span>PNG (White BG, No Grid)</span></button>
+                                <button onclick="exportXPSData('csv')"><i class="fas fa-file-csv"></i> <span data-i18n="data_csv">Data (CSV)</span></button>
+                                <button onclick="exportXPSData('txt')"><i class="fas fa-file-alt"></i> <span data-i18n="data_txt">Data (TXT)</span></button>
+                                <button onclick="exportXPSReport()"><i class="fas fa-file-pdf"></i> <span data-i18n="full_report">Full Report</span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="chart-container"><canvas id="xpsChart"></canvas></div>
+                <div class="chart-info" id="xpsChartInfo"><span><i class="fas fa-info-circle"></i> <span data-i18n="upload_data">Upload data or select a sample to begin</span></span></div>
+            </div>
+        </div>
+
+        <div class="metadata-panel" id="xpsMetadataPanel" style="display: none;">
+            <h3><i class="fas fa-database"></i> <span data-i18n="metadata">XPS Metadata</span></h3>
+            <div class="metadata-grid" id="xpsMetadataGrid"></div>
+        </div>
+
+        <div class="analysis-tools">
+            <div class="tool-card">
+                <h3><i class="fas fa-bullseye"></i> <span data-i18n="peak_fitting">Peak Fitting</span></h3>
+                <div class="tool-controls">
+                    <label data-i18n="peak_type">Peak Type</label>
+                    <select id="peakType">
+                        <option value="gaussian">Gaussian</option>
+                        <option value="lorentzian">Lorentzian</option>
+                        <option value="voigt">Voigt (G+L)</option>
+                    </select>
+                </div>
+                <div class="tool-controls">
+                    <label data-i18n="bg_type">Background Type</label>
+                    <select id="bgType">
+                        <option value="shirley">Shirley</option>
+                        <option value="tougaard">Tougaard</option>
+                        <option value="linear">Linear</option>
+                    </select>
+                </div>
+                <div class="tool-controls">
+                    <label data-i18n="fwhm">FWHM (eV)</label>
+                    <input type="number" id="xpsFWHM" value="1.2" step="0.1" min="0.1" max="5">
+                </div>
+                <button class="btn btn-primary btn-full" onclick="fitXPSPeaks()"><i class="fas fa-search"></i> <span data-i18n="fit_peaks">Fit Peaks</span></button>
+                <div class="peak-list" id="xpsPeakList"><p class="empty-state" data-i18n="no_peaks">No peaks fitted yet</p></div>
+            </div>
+
+            <div class="tool-card">
+                <h3><i class="fas fa-ruler"></i> <span data-i18n="peak_params">Peak Parameters</span></h3>
+                <div class="param-grid">
+                    <div class="param-item"><span class="param-label" data-i18n="be_range">BE Range</span><span class="param-value" id="xpsRange">--</span></div>
+                    <div class="param-item"><span class="param-label" data-i18n="max_counts">Max Counts</span><span class="param-value" id="xpsMaxCounts">--</span></div>
+                    <div class="param-item"><span class="param-label" data-i18n="peak_count">Peak Count</span><span class="param-value" id="xpsPeakCount">--</span></div>
+                    <div class="param-item"><span class="param-label" data-i18n="avg_fwhm">Avg FWHM</span><span class="param-value" id="xpsAvgFWHM">--</span></div>
+                    <div class="param-item"><span class="param-label" data-i18n="area_ratio">Area Ratio</span><span class="param-value" id="xpsAreaRatio">--</span></div>
+                    <div class="param-item"><span class="param-label" data-i18n="chi_sq">Chi²</span><span class="param-value" id="xpsChiSq">--</span></div>
+                </div>
+                <button class="btn btn-secondary btn-full" onclick="exportXPSPeakData()"><i class="fas fa-table"></i> <span data-i18n="export_peak">Export Peak Data</span></button>
+            </div>
+
+            <div class="tool-card">
+                <h3><i class="fas fa-atom"></i> <span data-i18n="elemental_analysis">Elemental Analysis</span></h3>
+                <div class="crystal-form">
+                    <label data-i18n="photon_energy">Photon Energy (eV)</label>
+                    <input type="number" id="photonEnergy" value="1486.6" step="0.1">
+                    <label data-i18n="analyzer_mode">Analyzer Mode</label>
+                    <select id="analyzerMode">
+                        <option>CAE (Fixed Analyzer Energy)</option>
+                        <option>CRR (Fixed Retardation Ratio)</option>
+                    </select>
+                    <label data-i18n="pass_energy">Pass Energy (eV)</label>
+                    <input type="number" id="passEnergy" value="50" step="1">
+                    <button class="btn btn-primary btn-full" onclick="calculateAtomicConc()" style="margin-top: 12px;"><i class="fas fa-calculator"></i> <span data-i18n="calc_atomic">Calculate Atomic %</span></button>
+                </div>
+                <div class="d-spacing-list" id="atomicConcList"><p class="empty-state" data-i18n="upload_survey">Upload survey scan for atomic %</p></div>
+            </div>
+
+            <div class="tool-card wide">
+                <h3><i class="fas fa-list-ol"></i> <span data-i18n="detailed_peak">Detailed Peak Analysis</span></h3>
+                <div class="fg-table-container">
+                    <table class="fg-table xps-peaks-table" id="xpsPeakTable">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th data-i18n="element">Element</th>
+                                <th data-i18n="orbital">Orbital</th>
+                                <th data-i18n="be">Binding Energy (eV)</th>
+                                <th data-i18n="fwhm">FWHM (eV)</th>
+                                <th data-i18n="area">Area (cps·eV)</th>
+                                <th data-i18n="atomic">Atomic %</th>
+                                <th data-i18n="chemical_state">Chemical State</th>
+                            </tr>
+                        </thead>
+                        <tbody id="xpsPeakTableBody">
+                            <tr><td colspan="8" class="empty-row" data-i18n="upload_data">Upload data and fit peaks to see detailed analysis</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="tool-card wide">
+                <h3><i class="fas fa-search"></i> <span data-i18n="reference_database">Reference Binding Energies</span></h3>
+                <div class="xps-element-select" id="xpsElementSelect">
+                    <button class="xps-element-btn" onclick="showElementRef('C')"><i class="fas fa-atom"></i> C</button>
+                    <button class="xps-element-btn" onclick="showElementRef('O')"><i class="fas fa-atom"></i> O</button>
+                    <button class="xps-element-btn" onclick="showElementRef('N')"><i class="fas fa-atom"></i> N</button>
+                    <button class="xps-element-btn" onclick="showElementRef('Fe')"><i class="fas fa-atom"></i> Fe</button>
+                    <button class="xps-element-btn" onclick="showElementRef('Cd')"><i class="fas fa-atom"></i> Cd</button>
+                    <button class="xps-element-btn" onclick="showElementRef('As')"><i class="fas fa-atom"></i> As</button>
+                    <button class="xps-element-btn" onclick="showElementRef('Zn')"><i class="fas fa-atom"></i> Zn</button>
+                    <button class="xps-element-btn" onclick="showElementRef('Ti')"><i class="fas fa-atom"></i> Ti</button>
+                </div>
+                <div class="fg-table-container">
+                    <table class="fg-table" id="xpsRefTable">
+                        <thead>
+                            <tr>
+                                <th data-i18n="orbital">Orbital</th>
+                                <th data-i18n="be">Binding Energy (eV)</th>
+                                <th data-i18n="chemical_state">Chemical State</th>
+                                <th data-i18n="ref_source">Reference Source</th>
+                            </tr>
+                        </thead>
+                        <tbody id="xpsRefTableBody">
+                            <tr><td colspan="4" class="empty-row" data-i18n="select_element">Select an element to see reference binding energies</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="../js/lang.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/xps.js"></script>
+</body>
+</html>

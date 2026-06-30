@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.0.1/dist/chartjs-plugin-annotation.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
@@ -35,8 +36,8 @@
                 <div class="upload-area" id="xrdUploadArea">
                     <i class="fas fa-cloud-upload-alt"></i>
                     <p data-i18n="drag_drop">Drag & drop files</p>
-                    <span class="upload-formats">.txt, .csv, .xy, .xrdml</span>
-                    <input type="file" id="xrdFileInput" accept=".txt,.csv,.xy,.xrdml" multiple>
+                    <span class="upload-formats">.txt, .csv, .xy, .xrdml, .xlsx, .xls</span>
+                    <input type="file" id="xrdFileInput" accept=".txt,.csv,.xy,.xrdml,.xlsx,.xls" multiple>
                     <button class="btn btn-outline" style="margin-top: 8px;" onclick="document.getElementById('xrdFileInput').click()">
                         <i class="fas fa-folder-open"></i> <span data-i18n="browse">Browse</span>
                     </button>
