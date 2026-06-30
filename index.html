@@ -3,202 +3,577 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bio Lab - Environmental Engineering Research</title>
+    <title>BioChar Lab - Environmental Engineering Research</title>
     <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.0.1/dist/chartjs-plugin-annotation.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-    <!-- Language Toggle -->
-    <div class="lang-toggle">
-        <button data-lang="en" class="active" onclick="setLanguage('en')">EN</button>
-        <button data-lang="zh" onclick="setLanguage('zh')">中文</button>
-    </div>
-
+    <!-- Navigation -->
     <nav class="navbar">
-        <a href="index.html" class="nav-brand">
+        <div class="nav-brand">
             <i class="fas fa-leaf"></i>
-            <span>Bio Lab</span>
-        </a>
+            <span>BioChar Lab</span>
+        </div>
         <ul class="nav-links">
-            <li><a href="index.html" class="active" data-i18n="home">Home</a></li>
-            <li><a href="pages/xrd.html">XRD</a></li>
-            <li><a href="pages/ftir.html">FTIR</a></li>
-            <li><a href="pages/bet.html">BET</a></li>
-            <li><a href="#projects" data-i18n="projects">Projects</a></li>
-            <li><a href="#contact" data-i18n="contact">Contact</a></li>
+            <li><a href="#home" class="active">Home</a></li>
+            <li><a href="#xrd">XRD Analysis</a></li>
+            <li><a href="#ftir">FTIR Analysis</a></li>
+            <li><a href="#bet">BET Analysis</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
         </ul>
-        <div class="hamburger"><span></span><span></span><span></span></div>
+        <div class="hamburger">
+            <span></span><span></span><span></span>
+        </div>
     </nav>
 
-    <section class="hero">
+    <!-- Hero Section -->
+    <section id="home" class="hero">
         <div class="hero-content">
-            <h1 data-i18n="hero_title">Environmental Engineering</h1>
-            <h1><span data-i18n="hero_subtitle">Research & Analysis</span></h1>
-            <p data-i18n="hero_desc">Advanced characterization tools for biochar, adsorbents, and water treatment materials. Upload XRD, FTIR, BET data for instant visualization and analysis.</p>
+            <h1>Environmental Engineering<br><span class="gradient-text">Research & Data Analysis</span></h1>
+            <p>Advanced characterization tools for biochar, adsorbents, and water treatment materials. 
+               Upload XRD, FTIR, BET data for instant visualization and analysis.</p>
             <div class="hero-buttons">
-                <a href="pages/xrd.html" class="btn btn-primary"><i class="fas fa-chart-line"></i> <span data-i18n="start_analysis">Start Analysis</span></a>
-                <a href="#projects" class="btn btn-secondary"><i class="fas fa-folder-open"></i> <span data-i18n="view_projects">View Projects</span></a>
+                <a href="#xrd" class="btn btn-primary"><i class="fas fa-chart-line"></i> Start Analysis</a>
+                <a href="#projects" class="btn btn-secondary"><i class="fas fa-folder-open"></i> View Projects</a>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="molecule-animation">
+                <div class="atom a1"></div>
+                <div class="atom a2"></div>
+                <div class="atom a3"></div>
+                <div class="atom a4"></div>
+                <div class="bond b1"></div>
+                <div class="bond b2"></div>
+                <div class="bond b3"></div>
             </div>
         </div>
     </section>
 
-    <section class="analysis-section">
-        <div class="section-header">
-            <span class="section-tag"><i class="fas fa-tools"></i> <span data-i18n="analysis_tools">Analysis Tools</span></span>
-            <h2 data-i18n="choose_tool">Choose Your Characterization Method</h2>
-            <p data-i18n="click_tool">Click any tool to open its dedicated analysis page.</p>
-        </div>
-        <div class="tool-cards">
-            <a href="pages/xrd.html" class="tool-card-link">
-                <div class="tool-card-main">
-                    <i class="fas fa-wave-square tool-card-icon"></i>
-                    <h3>XRD</h3>
-                    <p data-i18n="xrd_desc">Peak detection, d-spacing, crystallinity index, crystallite size</p>
-                    <span class="tool-card-link-text" data-i18n="open_xrd">Open XRD Tool <i class="fas fa-arrow-right"></i></span>
-                </div>
-            </a>
-            <a href="pages/ftir.html" class="tool-card-link">
-                <div class="tool-card-main">
-                    <i class="fas fa-signature tool-card-icon"></i>
-                    <h3>FTIR</h3>
-                    <p data-i18n="ftir_desc">Functional group ID, band assignment, baseline correction</p>
-                    <span class="tool-card-link-text" data-i18n="open_ftir">Open FTIR Tool <i class="fas fa-arrow-right"></i></span>
-                </div>
-            </a>
-            <a href="pages/bet.html" class="tool-card-link">
-                <div class="tool-card-main">
-                    <i class="fas fa-layer-group tool-card-icon"></i>
-                    <h3>BET</h3>
-                    <p data-i18n="bet_desc">Surface area, pore volume, isotherm classification, BJH</p>
-                    <span class="tool-card-link-text" data-i18n="open_bet">Open BET Tool <i class="fas fa-arrow-right"></i></span>
-                </div>
-            </a>
-        </div>
-    </section>
-
+    <!-- Stats Bar -->
     <section class="stats-bar">
-        <div class="stat-card">
+        <div class="stat-item">
             <i class="fas fa-microscope"></i>
-            <span class="stat-number">150+</span>
-            <span class="stat-label" data-i18n="samples">Samples Analyzed</span>
+            <span class="stat-number" data-target="150">0</span>
+            <span class="stat-label">Samples Analyzed</span>
         </div>
-        <div class="stat-card">
+        <div class="stat-item">
             <i class="fas fa-flask"></i>
-            <span class="stat-number">12</span>
-            <span class="stat-label" data-i18n="research">Research Projects</span>
+            <span class="stat-number" data-target="12">0</span>
+            <span class="stat-label">Research Projects</span>
         </div>
-        <div class="stat-card">
+        <div class="stat-item">
             <i class="fas fa-file-alt"></i>
-            <span class="stat-number">8</span>
-            <span class="stat-label" data-i18n="publications">Publications</span>
+            <span class="stat-number" data-target="8">0</span>
+            <span class="stat-label">Publications</span>
         </div>
-        <div class="stat-card">
+        <div class="stat-item">
             <i class="fas fa-award"></i>
-            <span class="stat-number">3</span>
-            <span class="stat-label" data-i18n="q1">Q1 Journals</span>
+            <span class="stat-number" data-target="3">0</span>
+            <span class="stat-label">Q1 Journals</span>
         </div>
     </section>
 
+    <!-- XRD Analysis Section -->
+    <section id="xrd" class="analysis-section">
+        <div class="section-header">
+            <span class="section-tag"><i class="fas fa-wave-square"></i> XRD Analysis</span>
+            <h2>X-Ray Diffraction Data Visualization</h2>
+            <p>Upload your XRD data (2θ vs Intensity) to generate publication-ready graphs with peak identification.</p>
+        </div>
+
+        <div class="analysis-workspace">
+            <!-- Upload Panel -->
+            <div class="upload-panel">
+                <div class="upload-area" id="xrdUploadArea">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <p>Drag & drop XRD data files here</p>
+                    <span class="upload-formats">Supported: .txt, .csv, .xy, .xrdml</span>
+                    <input type="file" id="xrdFileInput" accept=".txt,.csv,.xy,.xrdml" multiple>
+                    <button class="btn btn-outline" onclick="document.getElementById('xrdFileInput').click()">
+                        <i class="fas fa-folder-open"></i> Browse Files
+                    </button>
+                </div>
+
+                <div class="sample-data">
+                    <p>Or use sample data:</p>
+                    <button class="btn btn-small" onclick="loadSampleXRD('biochar')">
+                        <i class="fas fa-vial"></i> Tea Branch Biochar
+                    </button>
+                    <button class="btn btn-small" onclick="loadSampleXRD('activated')">
+                        <i class="fas fa-vial"></i> Activated Carbon
+                    </button>
+                    <button class="btn btn-small" onclick="loadSampleXRD('composite')">
+                        <i class="fas fa-vial"></i> Fe-Modified Biochar
+                    </button>
+                </div>
+            </div>
+
+            <!-- Chart Panel -->
+            <div class="chart-panel">
+                <div class="chart-toolbar">
+                    <div class="chart-title">
+                        <i class="fas fa-chart-area"></i>
+                        <span id="xrdChartTitle">XRD Pattern</span>
+                    </div>
+                    <div class="chart-controls">
+                        <button class="tool-btn" id="xrdZoomBtn" title="Zoom"><i class="fas fa-search-plus"></i></button>
+                        <button class="tool-btn" id="xrdPanBtn" title="Pan"><i class="fas fa-hand-paper"></i></button>
+                        <button class="tool-btn" onclick="resetXRDChart()" title="Reset"><i class="fas fa-undo"></i></button>
+                        <button class="tool-btn" onclick="toggleXRDGrid()" title="Grid"><i class="fas fa-border-all"></i></button>
+                        <button class="tool-btn" onclick="exportXRDChart()" title="Export PNG"><i class="fas fa-download"></i></button>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="xrdChart"></canvas>
+                </div>
+                <div class="chart-info" id="xrdChartInfo">
+                    <span><i class="fas fa-info-circle"></i> Upload data or select a sample to begin</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- XRD Analysis Tools -->
+        <div class="analysis-tools">
+            <div class="tool-card">
+                <h3><i class="fas fa-bullseye"></i> Peak Detection</h3>
+                <div class="tool-controls">
+                    <label>Min Peak Height (%)</label>
+                    <input type="range" id="peakThreshold" min="1" max="50" value="10" onchange="detectPeaks()">
+                    <span id="peakThresholdVal">10%</span>
+                </div>
+                <div class="tool-controls">
+                    <label>Smoothing Factor</label>
+                    <input type="range" id="smoothFactor" min="0" max="20" value="5" onchange="smoothData()">
+                    <span id="smoothFactorVal">5</span>
+                </div>
+                <button class="btn btn-primary btn-full" onclick="detectPeaks()">
+                    <i class="fas fa-search"></i> Detect Peaks
+                </button>
+                <div class="peak-list" id="peakList">
+                    <p class="empty-state">No peaks detected yet</p>
+                </div>
+            </div>
+
+            <div class="tool-card">
+                <h3><i class="fas fa-ruler"></i> Peak Parameters</h3>
+                <div class="param-grid">
+                    <div class="param-item">
+                        <span class="param-label">2θ Range</span>
+                        <span class="param-value" id="xrdRange">--</span>
+                    </div>
+                    <div class="param-item">
+                        <span class="param-label">Max Intensity</span>
+                        <span class="param-value" id="xrdMaxInt">--</span>
+                    </div>
+                    <div class="param-item">
+                        <span class="param-label">Peak Count</span>
+                        <span class="param-value" id="xrdPeakCount">--</span>
+                    </div>
+                    <div class="param-item">
+                        <span class="param-label">FWHM (avg)</span>
+                        <span class="param-value" id="xrdFWHM">--</span>
+                    </div>
+                </div>
+                <button class="btn btn-secondary btn-full" onclick="exportXRDData()">
+                    <i class="fas fa-table"></i> Export Data Table
+                </button>
+            </div>
+
+            <div class="tool-card">
+                <h3><i class="fas fa-atom"></i> Crystal Info</h3>
+                <div class="crystal-form">
+                    <label>Wavelength (Å)</label>
+                    <input type="number" id="wavelength" value="1.5406" step="0.0001" placeholder="Cu Kα = 1.5406">
+                    <label>Calculate d-spacing?</label>
+                    <button class="btn btn-primary btn-full" onclick="calculateDSpacing()">
+                        <i class="fas fa-calculator"></i> Calculate d-spacing
+                    </button>
+                </div>
+                <div class="d-spacing-list" id="dSpacingList">
+                    <p class="empty-state">Select peaks to calculate d-spacing</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FTIR Analysis Section -->
+    <section id="ftir" class="analysis-section alt-bg">
+        <div class="section-header">
+            <span class="section-tag"><i class="fas fa-signature"></i> FTIR Analysis</span>
+            <h2>Fourier Transform Infrared Spectroscopy</h2>
+            <p>Upload FTIR spectra (Wavenumber vs Transmittance/Absorbance) for functional group identification.</p>
+        </div>
+
+        <div class="analysis-workspace">
+            <div class="upload-panel">
+                <div class="upload-area" id="ftirUploadArea">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <p>Drag & drop FTIR data files here</p>
+                    <span class="upload-formats">Supported: .txt, .csv, .spc, .jdx</span>
+                    <input type="file" id="ftirFileInput" accept=".txt,.csv,.spc,.jdx" multiple>
+                    <button class="btn btn-outline" onclick="document.getElementById('ftirFileInput').click()">
+                        <i class="fas fa-folder-open"></i> Browse Files
+                    </button>
+                </div>
+                <div class="sample-data">
+                    <p>Or use sample data:</p>
+                    <button class="btn btn-small" onclick="loadSampleFTIR('raw')">
+                        <i class="fas fa-vial"></i> Raw Biochar
+                    </button>
+                    <button class="btn btn-small" onclick="loadSampleFTIR('modified')">
+                        <i class="fas fa-vial"></i> KOH-Activated
+                    </button>
+                </div>
+            </div>
+
+            <div class="chart-panel">
+                <div class="chart-toolbar">
+                    <div class="chart-title">
+                        <i class="fas fa-chart-area"></i>
+                        <span id="ftirChartTitle">FTIR Spectrum</span>
+                    </div>
+                    <div class="chart-controls">
+                        <button class="tool-btn" onclick="toggleFTIRMode()" title="Transmittance/Absorbance"><i class="fas fa-exchange-alt"></i></button>
+                        <button class="tool-btn" onclick="resetFTIRChart()" title="Reset"><i class="fas fa-undo"></i></button>
+                        <button class="tool-btn" onclick="exportFTIRChart()" title="Export PNG"><i class="fas fa-download"></i></button>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="ftirChart"></canvas>
+                </div>
+                <div class="chart-info" id="ftirChartInfo">
+                    <span><i class="fas fa-info-circle"></i> Upload data or select a sample to begin</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- FTIR Functional Groups -->
+        <div class="analysis-tools">
+            <div class="tool-card wide">
+                <h3><i class="fas fa-search"></i> Functional Group Identification</h3>
+                <div class="fg-table-container">
+                    <table class="fg-table" id="fgTable">
+                        <thead>
+                            <tr>
+                                <th>Wavenumber (cm⁻¹)</th>
+                                <th>Functional Group</th>
+                                <th>Vibration Type</th>
+                                <th>Intensity</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="fgTableBody">
+                            <tr><td colspan="5" class="empty-row">Upload FTIR data to identify functional groups</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="fg-legend">
+                    <span class="legend-item"><span class="dot found"></span> Detected</span>
+                    <span class="legend-item"><span class="dot not-found"></span> Not Detected</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BET Analysis Section -->
+    <section id="bet" class="analysis-section">
+        <div class="section-header">
+            <span class="section-tag"><i class="fas fa-layer-group"></i> BET Analysis</span>
+            <h2>Surface Area & Porosity Analysis</h2>
+            <p>Upload N₂ adsorption/desorption isotherm data for BET surface area and pore size distribution analysis.</p>
+        </div>
+
+        <div class="analysis-workspace">
+            <div class="upload-panel">
+                <div class="upload-area" id="betUploadArea">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <p>Drag & drop BET data files here</p>
+                    <span class="upload-formats">Supported: .txt, .csv, .xls, .xlsx</span>
+                    <input type="file" id="betFileInput" accept=".txt,.csv,.xls,.xlsx" multiple>
+                    <button class="btn btn-outline" onclick="document.getElementById('betFileInput').click()">
+                        <i class="fas fa-folder-open"></i> Browse Files
+                    </button>
+                </div>
+                <div class="sample-data">
+                    <p>Or use sample data:</p>
+                    <button class="btn btn-small" onclick="loadSampleBET('biochar')">
+                        <i class="fas fa-vial"></i> Biochar N₂ Isotherm
+                    </button>
+                    <button class="btn btn-small" onclick="loadSampleBET('activated')">
+                        <i class="fas fa-vial"></i> Activated Carbon
+                    </button>
+                </div>
+            </div>
+
+            <div class="chart-panel">
+                <div class="chart-toolbar">
+                    <div class="chart-title">
+                        <i class="fas fa-chart-area"></i>
+                        <span id="betChartTitle">N₂ Adsorption/Desorption Isotherm</span>
+                    </div>
+                    <div class="chart-controls">
+                        <button class="tool-btn" onclick="toggleBETPlot()" title="Switch Plot Type"><i class="fas fa-random"></i></button>
+                        <button class="tool-btn" onclick="resetBETChart()" title="Reset"><i class="fas fa-undo"></i></button>
+                        <button class="tool-btn" onclick="exportBETChart()" title="Export PNG"><i class="fas fa-download"></i></button>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="betChart"></canvas>
+                </div>
+                <div class="chart-info" id="betChartInfo">
+                    <span><i class="fas fa-info-circle"></i> Upload data or select a sample to begin</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="analysis-tools">
+            <div class="tool-card">
+                <h3><i class="fas fa-calculator"></i> BET Calculator</h3>
+                <div class="bet-params">
+                    <label>Cross-sectional area of N₂ (Å²)</label>
+                    <input type="number" id="crossSection" value="16.2" step="0.1">
+                    <label>Molecular weight of N₂ (g/mol)</label>
+                    <input type="number" id="molWeight" value="28.0134" step="0.0001">
+                    <label>STP condition (cm³/mol)</label>
+                    <input type="number" id="stpCondition" value="22414" step="1">
+                </div>
+                <button class="btn btn-primary btn-full" onclick="calculateBET()">
+                    <i class="fas fa-calculator"></i> Calculate BET Surface Area
+                </button>
+            </div>
+
+            <div class="tool-card">
+                <h3><i class="fas fa-chart-pie"></i> Results Summary</h3>
+                <div class="result-grid">
+                    <div class="result-item">
+                        <span class="result-label">BET Surface Area</span>
+                        <span class="result-value" id="betSurfaceArea">--</span>
+                        <span class="result-unit">m²/g</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Total Pore Volume</span>
+                        <span class="result-value" id="betPoreVolume">--</span>
+                        <span class="result-unit">cm³/g</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Average Pore Size</span>
+                        <span class="result-value" id="betPoreSize">--</span>
+                        <span class="result-unit">nm</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Correlation (R²)</span>
+                        <span class="result-value" id="betR2">--</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tool-card">
+                <h3><i class="fas fa-project-diagram"></i> Isotherm Type</h3>
+                <div class="isotherm-types">
+                    <div class="iso-type" id="isoType1">
+                        <span class="iso-name">Type I</span>
+                        <span class="iso-desc">Microporous</span>
+                    </div>
+                    <div class="iso-type" id="isoType2">
+                        <span class="iso-name">Type II</span>
+                        <span class="iso-desc">Non-porous/macroporous</span>
+                    </div>
+                    <div class="iso-type" id="isoType3">
+                        <span class="iso-name">Type III</span>
+                        <span class="iso-desc">Weak adsorbent-adsorbate</span>
+                    </div>
+                    <div class="iso-type" id="isoType4">
+                        <span class="iso-name">Type IV</span>
+                        <span class="iso-desc">Mesoporous + Hysteresis</span>
+                    </div>
+                </div>
+                <div class="iso-classification" id="isoClassification">
+                    Upload data to classify isotherm type
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
     <section id="projects" class="analysis-section alt-bg">
         <div class="section-header">
-            <span class="section-tag"><i class="fas fa-flask"></i> <span data-i18n="current_projects">Current Research Projects</span></span>
-            <h2 data-i18n="current_projects">Current Research Projects</h2>
-            <p data-i18n="project_desc">Environmental engineering research focused on biochar-based materials for water treatment.</p>
+            <span class="section-tag"><i class="fas fa-flask"></i> Research Projects</span>
+            <h2>Current Research Projects</h2>
+            <p>Environmental engineering research focused on biochar-based materials for water treatment.</p>
         </div>
+
         <div class="projects-grid">
             <div class="project-card">
-                <div class="project-image"><i class="fas fa-seedling"></i></div>
+                <div class="project-image">
+                    <i class="fas fa-seedling"></i>
+                </div>
                 <div class="project-content">
-                    <span class="project-tag" data-i18n="q1_target">Q1 Target</span>
-                    <h3 data-i18n="cd_removal">Tea Branch Biochar for Cd²⁺ Removal</h3>
-                    <p data-i18n="cd_desc">Preparation and characterization of tea branch biochar for cadmium removal from aqueous solutions.</p>
-                    <div class="project-progress"><div class="progress-bar" style="width: 85%"></div></div>
+                    <span class="project-tag">Q1 Target</span>
+                    <h3>Tea Branch Biochar for Cd²⁺ Removal</h3>
+                    <p>Preparation and characterization of tea branch biochar for cadmium removal from aqueous solutions. XRD, FTIR, BET, SEM-EDS analysis.</p>
+                    <div class="project-meta">
+                        <span><i class="fas fa-calendar"></i> 2024-2026</span>
+                        <span><i class="fas fa-chart-bar"></i> 85% Complete</span>
+                    </div>
+                    <div class="project-progress">
+                        <div class="progress-bar" style="width: 85%"></div>
+                    </div>
                     <div class="project-chars">
-                        <span class="char-badge">XRD</span><span class="char-badge">FTIR</span><span class="char-badge">BET</span><span class="char-badge">SEM-EDS</span>
+                        <span class="char-badge xrd">XRD</span>
+                        <span class="char-badge ftir">FTIR</span>
+                        <span class="char-badge bet">BET</span>
+                        <span class="char-badge sem">SEM-EDS</span>
                     </div>
                 </div>
             </div>
+
             <div class="project-card">
-                <div class="project-image"><i class="fas fa-tint"></i></div>
+                <div class="project-image">
+                    <i class="fas fa-tint"></i>
+                </div>
                 <div class="project-content">
-                    <span class="project-tag" data-i18n="in_progress">In Progress</span>
-                    <h3 data-i18n="pnp">PNP Degradation Study</h3>
-                    <p data-i18n="pnp_desc">p-Nitrophenol degradation using modified biochar catalysts. Kinetic modeling.</p>
-                    <div class="project-progress"><div class="progress-bar" style="width: 60%"></div></div>
+                    <span class="project-tag">In Progress</span>
+                    <h3>PNP Degradation Study</h3>
+                    <p>p-Nitrophenol degradation using modified biochar catalysts. Kinetic modeling and optimization of process parameters.</p>
+                    <div class="project-meta">
+                        <span><i class="fas fa-calendar"></i> 2025-2026</span>
+                        <span><i class="fas fa-chart-bar"></i> 60% Complete</span>
+                    </div>
+                    <div class="project-progress">
+                        <div class="progress-bar" style="width: 60%"></div>
+                    </div>
                     <div class="project-chars">
-                        <span class="char-badge">UV-Vis</span><span class="char-badge">HPLC</span><span class="char-badge">GC-MS</span>
+                        <span class="char-badge uv">UV-Vis</span>
+                        <span class="char-badge hplc">HPLC</span>
+                        <span class="char-badge gc">GC-MS</span>
                     </div>
                 </div>
             </div>
+
             <div class="project-card">
-                <div class="project-image"><i class="fas fa-filter"></i></div>
+                <div class="project-image">
+                    <i class="fas fa-filter"></i>
+                </div>
                 <div class="project-content">
-                    <span class="project-tag" data-i18n="planning">Planning</span>
-                    <h3 data-i18n="as_removal">Fe-Modified Biochar for As Removal</h3>
-                    <p data-i18n="as_desc">Iron-impregnated biochar for arsenic removal from groundwater.</p>
-                    <div class="project-progress"><div class="progress-bar" style="width: 15%"></div></div>
+                    <span class="project-tag">Planning</span>
+                    <h3>Fe-Modified Biochar for As Removal</h3>
+                    <p>Iron-impregnated biochar for arsenic removal from groundwater. Focus on tropical water recycling applications.</p>
+                    <div class="project-meta">
+                        <span><i class="fas fa-calendar"></i> 2026-2027</span>
+                        <span><i class="fas fa-chart-bar"></i> 15% Complete</span>
+                    </div>
+                    <div class="project-progress">
+                        <div class="progress-bar" style="width: 15%"></div>
+                    </div>
                     <div class="project-chars">
-                        <span class="char-badge">XRD</span><span class="char-badge">XPS</span><span class="char-badge">BET</span>
+                        <span class="char-badge xrd">XRD</span>
+                        <span class="char-badge xps">XPS</span>
+                        <span class="char-badge bet">BET</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Contact Section -->
     <section id="contact" class="analysis-section">
         <div class="section-header">
-            <span class="section-tag"><i class="fas fa-envelope"></i> <span data-i18n="get_in_touch">Get In Touch</span></span>
-            <h2 data-i18n="get_in_touch">Get In Touch</h2>
-            <p data-i18n="collaboration">For collaboration, data sharing, or research inquiries.</p>
+            <span class="section-tag"><i class="fas fa-envelope"></i> Contact</span>
+            <h2>Get In Touch</h2>
+            <p>For collaboration, data sharing, or research inquiries.</p>
         </div>
+
         <div class="contact-grid">
             <div class="contact-info">
                 <div class="contact-item">
                     <i class="fas fa-university"></i>
-                    <div><h4 data-i18n="institution">Institution</h4><p data-i18n="env_eng">Environmental Engineering Department</p></div>
+                    <div>
+                        <h4>Institution</h4>
+                        <p>Environmental Engineering Department</p>
+                    </div>
                 </div>
                 <div class="contact-item">
                     <i class="fas fa-map-marker-alt"></i>
-                    <div><h4 data-i18n="location">Location</h4><p data-i18n="china">China</p></div>
+                    <div>
+                        <h4>Location</h4>
+                        <p>China</p>
+                    </div>
                 </div>
                 <div class="contact-item">
                     <i class="fas fa-graduation-cap"></i>
-                    <div><h4 data-i18n="research_focus">Research Focus</h4><p data-i18n="biochar_water">Biochar, Water Treatment, Heavy Metal Removal</p></div>
+                    <div>
+                        <h4>Research Focus</h4>
+                        <p>Biochar, Water Treatment, Heavy Metal Removal</p>
+                    </div>
                 </div>
                 <div class="contact-item">
-                    <i class="fab fa-github"></i>
-                    <div><h4>GitHub</h4><p><a href="https://github.com/Bigboyin007" target="_blank">github.com/Biboyin007</a></p></div>
+                    <i class="fas fa-github"></i>
+                    <div>
+                        <h4>GitHub</h4>
+                        <p><a href="https://github.com/marufhossain0097" target="_blank">github.com/marufhossain0097</a></p>
+                    </div>
                 </div>
             </div>
+
             <div class="contact-form-wrapper">
-                <form onsubmit="event.preventDefault();showNotification('Message sent!');this.reset();">
-                    <div class="form-group"><label data-i18n="name">Name</label><input type="text" placeholder="Your name" required></div>
-                    <div class="form-group"><label data-i18n="email">Email</label><input type="email" placeholder="your@email.com" required></div>
-                    <div class="form-group"><label data-i18n="subject">Subject</label>
-                        <select><option data-i18n="research_collab">Research Collaboration</option><option data-i18n="data_help">Data Analysis Help</option><option data-i18n="general">General Inquiry</option></select>
+                <form class="contact-form" onsubmit="handleContactSubmit(event)">
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" placeholder="Your name" required>
                     </div>
-                    <div class="form-group"><label data-i18n="message">Message</label><textarea rows="4" placeholder="Your message..." required></textarea></div>
-                    <button type="submit" class="btn btn-primary btn-full"><i class="fas fa-paper-plane"></i> <span data-i18n="send_message">Send Message</span></button>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" placeholder="your@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Subject</label>
+                        <select>
+                            <option>Research Collaboration</option>
+                            <option>Data Analysis Help</option>
+                            <option>General Inquiry</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Message</label>
+                        <textarea rows="4" placeholder="Your message..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">
+                        <i class="fas fa-paper-plane"></i> Send Message
+                    </button>
                 </form>
             </div>
         </div>
     </section>
 
+    <!-- Footer -->
     <footer class="footer">
-        <div class="footer-brand"><i class="fas fa-leaf"></i><span>Bio Lab</span></div>
-        <p data-i18n="platform">Environmental Engineering Research & Data Analysis Platform</p>
-        <div class="footer-links">
-            <a href="index.html" data-i18n="home">Home</a>
-            <a href="pages/xrd.html">XRD</a>
-            <a href="pages/ftir.html">FTIR</a>
-            <a href="pages/bet.html">BET</a>
-            <a href="index.html#projects" data-i18n="projects">Projects</a>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <i class="fas fa-leaf"></i>
+                <span>BioChar Lab</span>
+            </div>
+            <p>Environmental Engineering Research & Data Analysis Platform</p>
+            <div class="footer-links">
+                <a href="#home">Home</a>
+                <a href="#xrd">XRD</a>
+                <a href="#ftir">FTIR</a>
+                <a href="#bet">BET</a>
+                <a href="#projects">Projects</a>
+            </div>
+            <div class="footer-bottom">
+                <p>Built for research. Open source. <i class="fas fa-heart"></i></p>
+            </div>
         </div>
-        <div class="footer-bottom"><p data-i18n="built_for">Built for research. Open source.</p></div>
     </footer>
 
-    <script src="js/lang.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/xrd.js"></script>
+    <script src="js/ftir.js"></script>
+    <script src="js/bet.js"></script>
 </body>
 </html>
