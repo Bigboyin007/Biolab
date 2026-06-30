@@ -1,51 +1,48 @@
-# Bio Lab - Multi-Page Research Platform
+# Bio Lab - Environmental Engineering Research Platform
 
-A modern, colorful web application for environmental engineering research with separate pages for each analysis tool.
+A professional dark-themed research platform with OriginPro-inspired design.
 
 ## Features
+- **OriginPro 2024 Dark Theme** - VS Code-like dark UI with subtle background
+- **Chinese/English Language Toggle** - Only on main page (saves preference across pages)
+- **White Background Export** - PNG export with white background and no grid lines for publications
+- **Separate Pages** - XRD, FTIR, BET each have dedicated analysis pages
+- **Multiple Export Options** - PNG 300/600/1000 DPI, White BG, CSV, TXT, Full Report
 
-### XRD Analysis Page
-- Upload .txt, .csv, .xy, .xrdml files
-- Peak detection with customizable threshold, smoothing, width
-- **Detailed peak table**: 2θ, Intensity, Relative %, FWHM, d-spacing, Area, Crystallite Size
-- **Metadata panel**: filename, points, range, step size, max intensity, mean, std dev
-- **d-spacing calculation** with Bragg's law
-- **Crystallinity index** and average peak area
-- **Sample data**: Tea Branch Biochar, KOH-Activated, Fe-Modified, ZnO, TiO₂
+## Website Name: Bio Lab
 
-### FTIR Analysis Page
-- Upload .txt, .csv, .spc, .jdx, .dpt files
-- **Functional group identification** with 11 pre-configured groups
-- **Spectrum statistics**: range, resolution, min/max T, detected bands, SNR
-- **Baseline correction**: None, Linear, Polynomial, Rubber Band
-- **Smoothing**: Savitzky-Golay filter
-- **Normalization**: Max, Area, Min-Max
-- **Sample data**: Raw Biochar, KOH-Activated, Fe-Modified, Chitosan-Biochar
+## Export Options
+| Option | Description |
+|--------|-------------|
+| PNG (300 DPI) | Dark theme, with grid |
+| PNG (600 DPI) | Dark theme, with grid |
+| PNG (1000 DPI) | Dark theme, with grid |
+| PNG (White BG, No Grid) | White background, no grid, dark text - for publications |
+| Data (CSV) | Raw data export |
+| Data (TXT) | Tab-delimited export |
+| Full Report | Complete analysis summary |
 
-### BET Analysis Page
-- Upload .txt, .csv, .xls, .xlsx files
-- **BET calculator** with customizable parameters
-- **Results**: Surface Area, Pore Volume, Micropore Volume, Mesopore Volume, Pore Size, R², Vm, C
-- **Isotherm classification**: Type I-VI with auto-detection
-- **Detailed data table**: all points with hysteresis and BET range flag
-- **Sample data**: Biochar, Activated Carbon, Mesoporous Silica, Macroporous Carbon
-
-### Download Options (All Pages)
-- **PNG 300 DPI** - Standard quality
-- **PNG 600 DPI** - High quality
-- **PNG 1000 DPI** - Publication quality
-- **Data CSV** - Raw data export
-- **Data TXT** - Tab-delimited export
-- **Full Report** - Complete analysis summary
+## Structure
+```
+bio-lab/
+├── index.html          # Home page (has language toggle)
+├── css/style.css       # OriginPro dark theme
+├── js/
+│   ├── lang.js         # Language system (EN/ZH)
+│   ├── main.js         # Shared utilities + white BG export
+│   ├── xrd.js          # XRD analysis
+│   ├── ftir.js         # FTIR analysis
+│   └── bet.js          # BET analysis
+├── pages/
+│   ├── xrd.html        # XRD page (no lang toggle)
+│   ├── ftir.html       # FTIR page (no lang toggle)
+│   └── bet.html        # BET page (no lang toggle)
+└── assets/
+    └── origin-bg.png    # Background image
+```
 
 ## Deploy to GitHub Pages
 1. Create new repo on GitHub
 2. Upload ALL files maintaining folder structure
 3. Settings → Pages → Deploy from branch → main → Save
-4. Visit: `https://yourusername.github.io/biochar-lab/`
-
-## Data Formats
-
-**XRD**: `2theta, Intensity` (comma/tab/space separated)
-**FTIR**: `Wavenumber, Transmittance` (comma/tab/space separated)
-**BET**: `P/P0, Adsorption, Desorption` (optional desorption column)
+4. Visit: `https://yourusername.github.io/bio-lab/`

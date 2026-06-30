@@ -4,12 +4,9 @@
 function toggleDownloadMenu(menuId) {
     const menu = document.getElementById(menuId);
     if (!menu) return;
-
-    // Close all other menus first
     document.querySelectorAll('.download-menu').forEach(m => {
         if (m.id !== menuId) m.classList.remove('show');
     });
-
     menu.classList.toggle('show');
 }
 
@@ -65,18 +62,82 @@ function downloadFile(content, filename, type = 'text/plain') {
     URL.revokeObjectURL(url);
 }
 
-// Export chart at specific DPI
+// Export chart with white background and NO grid
+function exportChartWhiteBG(chart, dpi, filename) {
+    if (!chart) {
+        showNotification('No chart to export', 'error');
+        return;
+    }
+
+    const scale = dpi / 96;
+    const originalWidth = chart.width;
+    const originalHeight = chart.height;
+
+    // Save original settings
+    const origXGrid = chart.options.scales.x.grid.color;
+    const origYGrid = chart.options.scales.y.grid.color;
+    const origXColor = chart.options.scales.x.ticks.color;
+    const origYColor = chart.options.scales.y.ticks.color;
+    const origXTitleColor = chart.options.scales.x.title?.color;
+    const origYTitleColor = chart.options.scales.y.title?.color;
+    const origBorder = chart.options.scales.x.border?.color;
+
+    // Apply white background settings
+    chart.options.scales.x.grid.color = 'transparent';
+    chart.options.scales.y.grid.color = 'transparent';
+    chart.options.scales.x.ticks.color = '#333333';
+    chart.options.scales.y.ticks.color = '#333333';
+    if (chart.options.scales.x.title) chart.options.scales.x.title.color = '#333333';
+    if (chart.options.scales.y.title) chart.options.scales.y.title.color = '#333333';
+
+    // Temporarily resize for high DPI
+    chart.resize(originalWidth * scale, originalHeight * scale);
+    chart.update('none');
+
+    // Create a temporary canvas with white background
+    const tempCanvas = document.createElement('canvas');
+    tempCanvas.width = chart.canvas.width;
+    tempCanvas.height = chart.canvas.height;
+    const tempCtx = tempCanvas.getContext('2d');
+
+    // Fill white background
+    tempCtx.fillStyle = '#ffffff';
+    tempCtx.fillRect(0, 0, tempCanvas.width, tempCanvas.height);
+
+    // Draw chart on top
+    tempCtx.drawImage(chart.canvas, 0, 0);
+
+    // Export
+    const link = document.createElement('a');
+    link.download = filename;
+    link.href = tempCanvas.toDataURL('image/png');
+    link.click();
+
+    // Restore original settings
+    chart.options.scales.x.grid.color = origXGrid;
+    chart.options.scales.y.grid.color = origYGrid;
+    chart.options.scales.x.ticks.color = origXColor;
+    chart.options.scales.y.ticks.color = origYColor;
+    if (chart.options.scales.x.title) chart.options.scales.x.title.color = origXTitleColor;
+    if (chart.options.scales.y.title) chart.options.scales.y.title.color = origYTitleColor;
+
+    chart.resize(originalWidth, originalHeight);
+    chart.update('none');
+
+    showNotification(`Chart exported: ${filename}`);
+}
+
+// Export chart at specific DPI (dark theme, with grid)
 function exportChartAtDPI(chart, dpi, filename) {
     if (!chart) {
         showNotification('No chart to export', 'error');
         return;
     }
 
-    const scale = dpi / 96; // Standard screen DPI is 96
+    const scale = dpi / 96;
     const originalWidth = chart.width;
     const originalHeight = chart.height;
 
-    // Temporarily resize canvas for high DPI
     chart.resize(originalWidth * scale, originalHeight * scale);
     chart.update('none');
 
@@ -85,7 +146,6 @@ function exportChartAtDPI(chart, dpi, filename) {
     link.href = chart.toBase64Image();
     link.click();
 
-    // Restore original size
     chart.resize(originalWidth, originalHeight);
     chart.update('none');
 
@@ -124,11 +184,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const navbar = document.querySelector('.navbar');
     if (navbar) {
         window.addEventListener('scroll', () => {
-            navbar.style.background = window.scrollY > 50 ? 'rgba(15, 15, 35, 0.95)' : 'rgba(15, 15, 35, 0.85)';
+            navbar.style.background = window.scrollY > 50 ? 'rgba(30, 30, 30, 0.98)' : 'rgba(37, 37, 38, 0.95)';
         });
     }
 
-    // Setup drag and drop for all pages
     setupDragDrop('xrdUploadArea', 'xrdFileInput');
     setupDragDrop('ftirUploadArea', 'ftirFileInput');
     setupDragDrop('betUploadArea', 'betFileInput');

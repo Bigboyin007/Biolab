@@ -3,182 +3,150 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FTIR Analysis - BioChar Lab</title>
+    <title data-i18n-title="ftir_analysis">FTIR Analysis - Bio Lab</title>
     <link rel="stylesheet" href="../css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
-    <div class="orb orb-3"></div>
-
     <nav class="navbar">
-        <a href="../index.html" class="nav-brand">
-            <i class="fas fa-leaf"></i>
-            <span>BioChar Lab</span>
-        </a>
+        <a href="../index.html" class="nav-brand"><i class="fas fa-leaf"></i><span>Bio Lab</span></a>
         <ul class="nav-links">
-            <li><a href="../index.html">Home</a></li>
+            <li><a href="../index.html" data-i18n="home">Home</a></li>
             <li><a href="xrd.html">XRD</a></li>
             <li><a href="ftir.html" class="active">FTIR</a></li>
             <li><a href="bet.html">BET</a></li>
-            <li><a href="../index.html#projects">Projects</a></li>
+            <li><a href="../index.html#projects" data-i18n="projects">Projects</a></li>
         </ul>
         <div class="hamburger"><span></span><span></span><span></span></div>
     </nav>
 
     <section class="analysis-section">
         <div class="section-header">
-            <span class="section-tag"><i class="fas fa-signature"></i> FTIR Analysis</span>
-            <h2>Fourier Transform Infrared Spectroscopy</h2>
-            <p>Upload FTIR spectra for functional group identification, peak analysis, and band assignment.</p>
+            <span class="section-tag"><i class="fas fa-signature"></i> <span data-i18n="ftir_analysis">FTIR Analysis</span></span>
+            <h2 data-i18n="ftir_analysis">Fourier Transform Infrared Spectroscopy</h2>
+            <p data-i18n="ftir_desc_long">Upload FTIR spectra for functional group identification, peak analysis, and band assignment.</p>
         </div>
 
-        <div style="display: grid; grid-template-columns: 300px 1fr; gap: 1.5rem;">
+        <div style="display: grid; grid-template-columns: 280px 1fr; gap: 16px;">
             <div>
                 <div class="upload-area" id="ftirUploadArea">
                     <i class="fas fa-cloud-upload-alt"></i>
-                    <p>Drag & drop FTIR files</p>
+                    <p data-i18n="drag_drop">Drag & drop files</p>
                     <span class="upload-formats">.txt, .csv, .spc, .jdx, .dpt</span>
                     <input type="file" id="ftirFileInput" accept=".txt,.csv,.spc,.jdx,.dpt" multiple>
-                    <button class="btn btn-outline" style="margin-top: 0.5rem;" onclick="document.getElementById('ftirFileInput').click()">
-                        <i class="fas fa-folder-open"></i> Browse
+                    <button class="btn btn-outline" style="margin-top: 8px;" onclick="document.getElementById('ftirFileInput').click()">
+                        <i class="fas fa-folder-open"></i> <span data-i18n="browse">Browse</span>
                     </button>
                 </div>
-
                 <div class="sample-data">
-                    <p><i class="fas fa-vial"></i> Sample Data:</p>
-                    <button class="btn btn-small" onclick="loadSampleFTIR('raw')">Raw Biochar</button>
-                    <button class="btn btn-small" onclick="loadSampleFTIR('modified')">KOH-Activated</button>
-                    <button class="btn btn-small" onclick="loadSampleFTIR('fe_modified')">Fe-Modified</button>
-                    <button class="btn btn-small" onclick="loadSampleFTIR('chitosan')">Chitosan-Biochar</button>
+                    <p><i class="fas fa-vial"></i> <span data-i18n="sample_data">Sample Data:</span></p>
+                    <button class="btn btn-small" onclick="loadSampleFTIR('raw')" data-i18n="raw_biochar">Raw Biochar</button>
+                    <button class="btn btn-small" onclick="loadSampleFTIR('modified')" data-i18n="koh_activated">KOH-Activated</button>
+                    <button class="btn btn-small" onclick="loadSampleFTIR('fe_modified')" data-i18n="fe_modified">Fe-Modified</button>
+                    <button class="btn btn-small" onclick="loadSampleFTIR('chitosan')" data-i18n="chitosan">Chitosan-Biochar</button>
                 </div>
             </div>
 
             <div class="chart-panel">
                 <div class="chart-toolbar">
-                    <div class="chart-title">
-                        <i class="fas fa-chart-area"></i>
-                        <span id="ftirChartTitle">FTIR Spectrum</span>
-                    </div>
+                    <div class="chart-title"><i class="fas fa-chart-area"></i> <span id="ftirChartTitle" data-i18n="ftir_spectrum">FTIR Spectrum</span></div>
                     <div class="chart-controls">
-                        <button class="tool-btn" onclick="toggleFTIRMode()" title="T/A Toggle"><i class="fas fa-exchange-alt"></i></button>
+                        <button class="tool-btn" onclick="toggleFTIRMode()" title="T/A"><i class="fas fa-exchange-alt"></i></button>
                         <button class="tool-btn" onclick="resetFTIRChart()" title="Reset"><i class="fas fa-undo"></i></button>
                         <div class="download-dropdown">
                             <button class="tool-btn" onclick="toggleDownloadMenu('ftirDownloadMenu')" title="Export"><i class="fas fa-download"></i></button>
                             <div class="download-menu" id="ftirDownloadMenu">
-                                <button onclick="exportFTIRChart(300)"><i class="fas fa-image"></i> PNG (300 DPI)</button>
-                                <button onclick="exportFTIRChart(600)"><i class="fas fa-image"></i> PNG (600 DPI)</button>
-                                <button onclick="exportFTIRChart(1000)"><i class="fas fa-image"></i> PNG (1000 DPI)</button>
-                                <button onclick="exportFTIRData('csv')"><i class="fas fa-file-csv"></i> Data (CSV)</button>
-                                <button onclick="exportFTIRReport()"><i class="fas fa-file-pdf"></i> Full Report</button>
+                                <button onclick="exportFTIRChart(300)"><i class="fas fa-image"></i> <span data-i18n="png_300">PNG (300 DPI)</span></button>
+                                <button onclick="exportFTIRChart(600)"><i class="fas fa-image"></i> <span data-i18n="png_600">PNG (600 DPI)</span></button>
+                                <button onclick="exportFTIRChart(1000)"><i class="fas fa-image"></i> <span data-i18n="png_1000">PNG (1000 DPI)</span></button>
+                                <button onclick="exportFTIRChart('white')"><i class="fas fa-file-image"></i> <span>PNG (White BG, No Grid)</span></button>
+                                <button onclick="exportFTIRData('csv')"><i class="fas fa-file-csv"></i> <span data-i18n="data_csv">Data (CSV)</span></button>
+                                <button onclick="exportFTIRReport()"><i class="fas fa-file-pdf"></i> <span data-i18n="full_report">Full Report</span></button>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="chart-container">
-                    <canvas id="ftirChart"></canvas>
-                </div>
-                <div class="chart-info" id="ftirChartInfo">
-                    <span><i class="fas fa-info-circle"></i> Upload data or select a sample</span>
-                </div>
+                <div class="chart-container"><canvas id="ftirChart"></canvas></div>
+                <div class="chart-info" id="ftirChartInfo"><span><i class="fas fa-info-circle"></i> <span data-i18n="upload_data">Upload data or select a sample</span></span></div>
             </div>
         </div>
 
-        <!-- Metadata -->
         <div class="metadata-panel" id="ftirMetadataPanel" style="display: none;">
-            <h3><i class="fas fa-database"></i> Spectrum Metadata</h3>
+            <h3><i class="fas fa-database"></i> <span data-i18n="metadata">Spectrum Metadata</span></h3>
             <div class="metadata-grid" id="ftirMetadataGrid"></div>
         </div>
 
         <div class="analysis-tools">
             <div class="tool-card wide">
-                <h3><i class="fas fa-search"></i> Functional Group Identification</h3>
+                <h3><i class="fas fa-search"></i> <span data-i18n="functional_group">Functional Group Identification</span></h3>
                 <div class="fg-table-container">
                     <table class="fg-table" id="fgTable">
                         <thead>
                             <tr>
-                                <th>Wavenumber (cm⁻¹)</th>
-                                <th>Functional Group</th>
-                                <th>Vibration Type</th>
-                                <th>Expected Range</th>
-                                <th>Observed Intensity</th>
-                                <th>Band Shape</th>
-                                <th>Status</th>
+                                <th data-i18n="wavenumber">Wavenumber (cm⁻¹)</th>
+                                <th data-i18n="functional_group">Functional Group</th>
+                                <th data-i18n="vibration_type">Vibration Type</th>
+                                <th data-i18n="expected_range">Expected Range</th>
+                                <th data-i18n="observed">Observed Intensity</th>
+                                <th data-i18n="band_shape">Band Shape</th>
+                                <th data-i18n="status">Status</th>
                             </tr>
                         </thead>
                         <tbody id="fgTableBody">
-                            <tr><td colspan="7" class="empty-row">Upload FTIR data to identify functional groups</td></tr>
+                            <tr><td colspan="7" class="empty-row" data-i18n="upload_data">Upload FTIR data to identify functional groups</td></tr>
                         </tbody>
                     </table>
                 </div>
                 <div class="fg-legend">
-                    <span class="legend-item"><span class="dot found"></span> Detected</span>
-                    <span class="legend-item"><span class="dot not-found"></span> Not Detected</span>
+                    <span class="legend-item"><span class="dot found"></span> <span data-i18n="detected">Detected</span></span>
+                    <span class="legend-item"><span class="dot not-found"></span> <span data-i18n="not_detected">Not Detected</span></span>
                 </div>
             </div>
 
             <div class="tool-card">
-                <h3><i class="fas fa-sliders-h"></i> Spectrum Settings</h3>
+                <h3><i class="fas fa-sliders-h"></i> <span data-i18n="spectrum_settings">Spectrum Settings</span></h3>
                 <div class="tool-controls">
-                    <label>Baseline Correction</label>
-                    <select id="baselineCorrection" style="width:100%;padding:0.75rem;background:var(--bg-light);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);" onchange="applyBaselineCorrection()">
-                        <option value="none">None</option>
-                        <option value="linear">Linear</option>
-                        <option value="polynomial">Polynomial (2nd order)</option>
-                        <option value="rubberband">Rubber Band</option>
+                    <label data-i18n="baseline">Baseline Correction</label>
+                    <select id="baselineCorrection" onchange="applyBaselineCorrection()">
+                        <option value="none" data-i18n="none">None</option>
+                        <option value="linear" data-i18n="linear">Linear</option>
+                        <option value="polynomial" data-i18n="polynomial">Polynomial (2nd order)</option>
+                        <option value="rubberband" data-i18n="rubberband">Rubber Band</option>
                     </select>
                 </div>
                 <div class="tool-controls">
-                    <label>Smoothing (Savitzky-Golay)</label>
+                    <label data-i18n="savgol">Smoothing (Savitzky-Golay)</label>
                     <input type="range" id="ftirSmooth" min="0" max="15" value="0" onchange="smoothFTIR()">
                     <span id="ftirSmoothVal">0</span>
                 </div>
                 <div class="tool-controls">
-                    <label>Normalization</label>
-                    <select id="ftirNormalize" style="width:100%;padding:0.75rem;background:var(--bg-light);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);margin-top:0.5rem;" onchange="normalizeFTIR()">
-                        <option value="none">None</option>
-                        <option value="max">Max Normalization</option>
-                        <option value="area">Area Normalization</option>
-                        <option value="minmax">Min-Max</option>
+                    <label data-i18n="normalization">Normalization</label>
+                    <select id="ftirNormalize" onchange="normalizeFTIR()">
+                        <option value="none" data-i18n="none">None</option>
+                        <option value="max" data-i18n="max_norm">Max Normalization</option>
+                        <option value="area" data-i18n="area_norm">Area Normalization</option>
+                        <option value="minmax" data-i18n="minmax">Min-Max</option>
                     </select>
                 </div>
             </div>
 
             <div class="tool-card">
-                <h3><i class="fas fa-chart-bar"></i> Spectrum Statistics</h3>
+                <h3><i class="fas fa-chart-bar"></i> <span data-i18n="spectrum_stats">Spectrum Statistics</span></h3>
                 <div class="param-grid">
-                    <div class="param-item">
-                        <span class="param-label">Wavenumber Range</span>
-                        <span class="param-value" id="ftirRange">--</span>
-                    </div>
-                    <div class="param-item">
-                        <span class="param-label">Resolution</span>
-                        <span class="param-value" id="ftirResolution">--</span>
-                    </div>
-                    <div class="param-item">
-                        <span class="param-label">Min Transmittance</span>
-                        <span class="param-value" id="ftirMinT">--</span>
-                    </div>
-                    <div class="param-item">
-                        <span class="param-label">Max Transmittance</span>
-                        <span class="param-value" id="ftirMaxT">--</span>
-                    </div>
-                    <div class="param-item">
-                        <span class="param-label">Detected Bands</span>
-                        <span class="param-value" id="ftirBands">--</span>
-                    </div>
-                    <div class="param-item">
-                        <span class="param-label">Signal/Noise Ratio</span>
-                        <span class="param-value" id="ftirSNR">--</span>
-                    </div>
+                    <div class="param-item"><span class="param-label" data-i18n="range_label">Wavenumber Range</span><span class="param-value" id="ftirRange">--</span></div>
+                    <div class="param-item"><span class="param-label" data-i18n="resolution">Resolution</span><span class="param-value" id="ftirResolution">--</span></div>
+                    <div class="param-item"><span class="param-label" data-i18n="min_t">Min Transmittance</span><span class="param-value" id="ftirMinT">--</span></div>
+                    <div class="param-item"><span class="param-label" data-i18n="max_t">Max Transmittance</span><span class="param-value" id="ftirMaxT">--</span></div>
+                    <div class="param-item"><span class="param-label" data-i18n="detected_bands">Detected Bands</span><span class="param-value" id="ftirBands">--</span></div>
+                    <div class="param-item"><span class="param-label" data-i18n="snr_label">Signal/Noise Ratio</span><span class="param-value" id="ftirSNR">--</span></div>
                 </div>
             </div>
         </div>
     </section>
 
+    <script src="../js/lang.js"></script>
     <script src="../js/main.js"></script>
     <script src="../js/ftir.js"></script>
 </body>
